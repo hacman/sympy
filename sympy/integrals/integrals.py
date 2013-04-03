@@ -553,8 +553,8 @@ class Integral(Expr):
         Once f and F have been identified, the transformation is made as
         follows:
 
-        .. math:: \int_a^b x \mathrm{d}x \rightarrow \int_{F(a)}^{F(b)} f(x)
-                  \frac{\mathrm{d}}{\mathrm{d}x}
+        .. math:: \int_a^b x dx \mapsto \int_{F(a)}^{F(b)} f(x)
+                  \frac{d}{dx} (f(x)) dx
 
         where `F(x)` is the inverse of `f(x)` and the limits and integrand have
         been corrected so as to retain the same value after integration.
