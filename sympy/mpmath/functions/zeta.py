@@ -922,7 +922,7 @@ def secondzeta_singular_term(ctx, s, a, **kwargs):
 def secondzeta(ctx, s, a = 0.015, **kwargs):
     r"""
     Evaluates the secondary zeta function `Z(s)`, defined for
-    `\mathrm{Re}(s)>1` by
+    `\Re(s)>1` by
 
     .. math ::
 

@@ -1255,7 +1255,7 @@ def limit(ctx, f, x, direction=1, exp=False, **kwargs):
     consecutive integer values of `n`, where the approach direction
     `d` may be specified using the *direction* keyword argument.
     For infinite `x`, :func:`~mpmath.limit` evaluates values of
-    `f(\mathrm{sign}(x) \cdot n)`.
+    `f(\operatorname{sgn}(x) \cdot n)`.
 
     If the approach to the limit is not sufficiently fast to give
     an accurate estimate directly, :func:`~mpmath.limit` attempts to find

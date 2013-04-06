@@ -702,7 +702,7 @@ Intervals are supported via :func:`mpmath.iv.tan`::
 """
 
 sec = r"""
-Computes the secant of `x`, `\mathrm{sec}(x) = \frac{1}{\cos(x)}`.
+Computes the secant of `x`, `\sec(x) = \frac{1}{\cos(x)}`.
 The secant function is singular at `x = (n+1/2)\pi`, but
 ``sec(x)`` always returns a finite result since `(n+1/2)\pi`
 cannot be represented exactly using floating-point arithmetic.
@@ -730,7 +730,7 @@ Intervals are supported via :func:`mpmath.iv.sec`::
 """
 
 csc = r"""
-Computes the cosecant of `x`, `\mathrm{csc}(x) = \frac{1}{\sin(x)}`.
+Computes the cosecant of `x`, `\csc(x) = \frac{1}{\sin(x)}`.
 This cosecant function is singular at `x = n \pi`, but with the
 exception of the point `x = 0`, ``csc(x)`` returns a finite result
 since `n \pi` cannot be represented exactly using floating-point
@@ -758,7 +758,7 @@ Intervals are supported via :func:`mpmath.iv.csc`::
 
 cot = r"""
 Computes the cotangent of `x`,
-`\mathrm{cot}(x) = \frac{1}{\tan(x)} = \frac{\cos(x)}{\sin(x)}`.
+`\cot(x) = \frac{1}{\tan(x)} = \frac{\cos(x)}{\sin(x)}`.
 This cotangent function is singular at `x = n \pi`, but with the
 exception of the point `x = 0`, ``cot(x)`` returns a finite result
 since `n \pi` cannot be represented exactly using floating-point
@@ -927,46 +927,46 @@ where the principal-branch log is implied.
 """
 
 acot = r"""Computes the inverse cotangent of `x`,
-`\mathrm{cot}^{-1}(x) = \tan^{-1}(1/x)`."""
+`\cot^{-1}(x) = \tan^{-1}(1/x)`."""
 
 asec = r"""Computes the inverse secant of `x`,
-`\mathrm{sec}^{-1}(x) = \cos^{-1}(1/x)`."""
+`\sec^{-1}(x) = \cos^{-1}(1/x)`."""
 
 acsc = r"""Computes the inverse cosecant of `x`,
-`\mathrm{csc}^{-1}(x) = \sin^{-1}(1/x)`."""
+`\csc^{-1}(x) = \sin^{-1}(1/x)`."""
 
 coth = r"""Computes the hyperbolic cotangent of `x`,
-`\mathrm{coth}(x) = \frac{\cosh(x)}{\sinh(x)}`.
+`\coth(x) = \frac{\cosh(x)}{\sinh(x)}`.
 """
 
 sech = r"""Computes the hyperbolic secant of `x`,
-`\mathrm{sech}(x) = \frac{1}{\cosh(x)}`.
+`\operatorname{sech}(x) = \frac{1}{\cosh(x)}`.
 """
 
 csch = r"""Computes the hyperbolic cosecant of `x`,
-`\mathrm{csch}(x) = \frac{1}{\sinh(x)}`.
+`\operatorname{csch}(x) = \frac{1}{\sinh(x)}`.
 """
 
 acosh = r"""Computes the inverse hyperbolic cosine of `x`,
-`\mathrm{cosh}^{-1}(x) = \log(x+\sqrt{x+1}\sqrt{x-1})`.
+`\cosh^{-1}(x) = \log(x+\sqrt{x+1}\sqrt{x-1})`.
 """
 
 asinh = r"""Computes the inverse hyperbolic sine of `x`,
-`\mathrm{sinh}^{-1}(x) = \log(x+\sqrt{1+x^2})`.
+`\sinh^{-1}(x) = \log(x+\sqrt{1+x^2})`.
 """
 
 atanh = r"""Computes the inverse hyperbolic tangent of `x`,
-`\mathrm{tanh}^{-1}(x) = \frac{1}{2}\left(\log(1+x)-\log(1-x)\right)`.
+`\tanh^{-1}(x) = \frac{1}{2}\left(\log(1+x)-\log(1-x)\right)`.
 """
 
 acoth = r"""Computes the inverse hyperbolic cotangent of `x`,
-`\mathrm{coth}^{-1}(x) = \tanh^{-1}(1/x)`."""
+`\coth^{-1}(x) = \tanh^{-1}(1/x)`."""
 
 asech = r"""Computes the inverse hyperbolic secant of `x`,
-`\mathrm{sech}^{-1}(x) = \cosh^{-1}(1/x)`."""
+`\operatorname{sech}^{-1}(x) = \cosh^{-1}(1/x)`."""
 
 acsch = r"""Computes the inverse hyperbolic cosecant of `x`,
-`\mathrm{csch}^{-1}(x) = \sinh^{-1}(1/x)`."""
+`\operatorname{csch}^{-1}(x) = \sinh^{-1}(1/x)`."""
 
 
 
@@ -999,7 +999,7 @@ sinc = r"""
 
 .. math ::
 
-    \mathrm{sinc}(x) = \begin{cases}
+    \operatorname{sinc}(x) = \begin{cases}
         \sin(x)/x, & \mbox{if } x \ne 0 \\
         1,         & \mbox{if } x = 0.
     \end{cases}
@@ -1030,13 +1030,13 @@ sincpi = r"""
 
 .. math ::
 
-    \mathrm{sinc}_{\pi}(x) = \begin{cases}
+    \operatorname{sinc}_{\pi}(x) = \begin{cases}
         \sin(\pi x)/(\pi x), & \mbox{if } x \ne 0 \\
         1,                   & \mbox{if } x = 0.
     \end{cases}
 
 Equivalently, we have
-`\mathrm{sinc}_{\pi}(x) = \mathrm{sinc}(\pi x)`.
+`\operatorname{sinc}_{\pi}(x) = \operatorname{sinc}(\pi x)`.
 
 The normalization entails that the function integrates
 to unity over the entire real line::
@@ -1140,7 +1140,7 @@ See notes about rounding for :func:`~mpmath.floor`.
 """
 
 nint = r"""
-Evaluates the nearest integer function, `\mathrm{nint}(x)`.
+Evaluates the nearest integer function, `\operatorname{nint}(x)`.
 This gives the nearest integer to `x`; on a tie, it
 gives the nearest even integer::
 
@@ -1166,7 +1166,7 @@ See notes about rounding for :func:`~mpmath.floor`.
 
 frac = r"""
 Gives the fractional part of `x`, defined as
-`\mathrm{frac}(x) = x - \lfloor x \rfloor` (see :func:`~mpmath.floor`).
+`\operatorname{frac}(x) = x - \lfloor x \rfloor` (see :func:`~mpmath.floor`).
 In effect, this computes `x` modulo 1, or `x+n` where
 `n \in \mathbb{Z}` is such that `x+n \in [0,1)`::
 
@@ -1198,15 +1198,15 @@ form::
 .. note::
 
     The fractional part is sometimes defined as a symmetric
-    function, i.e. returning `-\mathrm{frac}(-x)` if `x < 0`.
+    function, i.e. returning `-\operatorname{frac}(-x)` if `x < 0`.
     This convention is used, for instance, by Mathematica's
     ``FractionalPart``.
 
 """
 
 sign = r"""
-Returns the sign of `x`, defined as `\mathrm{sign}(x) = x / |x|`
-(with the special case `\mathrm{sign}(0) = 0`)::
+Returns the sign of `x`, defined as `\operatorname{sign}(x) = x / |x|`
+(with the special case `\operatorname{sign}(0) = 0`)::
 
     >>> from mpmath import *
     >>> mp.dps = 15; mp.pretty = False
@@ -1672,13 +1672,13 @@ Converts the radian angle `x` to a degree angle::
 """
 
 atan2 = r"""
-Computes the two-argument arctangent, `\mathrm{atan2}(y, x)`,
+Computes the two-argument arctangent, `\operatorname{atan2}(y, x)`,
 giving the signed angle between the positive `x`-axis and the
 point `(x, y)` in the 2D plane. This function is defined for
 real `x` and `y` only.
 
 The two-argument arctangent essentially computes
-`\mathrm{atan}(y/x)`, but accounts for the signs of both
+`\atan(y/x)`, but accounts for the signs of both
 `x` and `y` to give the angle for the correct quadrant. The
 following examples illustrate the difference::
 
@@ -2656,8 +2656,8 @@ Computes the double factorial `x!!`, defined for integers
 .. math ::
 
     x!! = \begin{cases}
-        1 \cdot 3 \cdots (x-2) \cdot x & x \;\mathrm{odd} \\
-        2 \cdot 4 \cdots (x-2) \cdot x & x \;\mathrm{even}
+        1 \cdot 3 \cdots (x-2) \cdot x & x \;\operatorname{odd} \\
+        2 \cdot 4 \cdots (x-2) \cdot x & x \;\operatorname{even}
     \end{cases}
 
 and more generally by [1]
@@ -3531,13 +3531,13 @@ arguments::
 """
 
 erf = r"""
-Computes the error function, `\mathrm{erf}(x)`. The error
+Computes the error function, `\operatorname{erf}(x)`. The error
 function is the normalized antiderivative of the Gaussian function
 `\exp(-t^2)`. More precisely,
 
 .. math::
 
-  \mathrm{erf}(x) = \frac{2}{\sqrt \pi} \int_0^x \exp(-t^2) \,dt
+  \operatorname{erf}(x) = \frac{2}{\sqrt \pi} \int_0^x \exp(-t^2) \,dt
 
 **Basic examples**
 
@@ -3556,7 +3556,7 @@ Simple values and limits include::
     >>> erf(-inf)
     -1.0
 
-For large real `x`, `\mathrm{erf}(x)` approaches 1 very
+For large real `x`, `\operatorname{erf}(x)` approaches 1 very
 rapidly::
 
     >>> erf(3)
@@ -3605,7 +3605,7 @@ are also related to the error function.
 
 erfc = r"""
 Computes the complementary error function,
-`\mathrm{erfc}(x) = 1-\mathrm{erf}(x)`.
+`\operatorname{erfc}(x) = 1-\operatorname{erf}(x)`.
 This function avoids cancellation that occurs when naively
 computing the complementary error function as ``1-erf(x)``::
 
@@ -3631,18 +3631,18 @@ Complex arguments are supported::
 
 
 erfi = r"""
-Computes the imaginary error function, `\mathrm{erfi}(x)`.
+Computes the imaginary error function, `\operatorname{erfi}(x)`.
 The imaginary error function is defined in analogy with the
 error function, but with a positive sign in the integrand:
 
 .. math ::
 
-  \mathrm{erfi}(x) = \frac{2}{\sqrt \pi} \int_0^x \exp(t^2) \,dt
+  \operatorname{erfi}(x) = \frac{2}{\sqrt \pi} \int_0^x \exp(t^2) \,dt
 
 Whereas the error function rapidly converges to 1 as `x` grows,
 the imaginary error function rapidly diverges to infinity.
 The functions are related as
-`\mathrm{erfi}(x) = -i\,\mathrm{erf}(ix)` for all complex
+`\operatorname{erfi}(x) = -i\,\operatorname{erf}(ix)` for all complex
 numbers `x`.
 
 **Examples**
@@ -3696,8 +3696,8 @@ Computes the inverse error function, satisfying
 
 .. math ::
 
-    \mathrm{erf}(\mathrm{erfinv}(x)) =
-    \mathrm{erfinv}(\mathrm{erf}(x)) = x.
+    \operatorname{erf}(\operatorname{erfinv}(x)) =
+    \operatorname{erfinv}(\operatorname{erf}(x)) = x.
 
 This function is defined only for `-1 \le x \le 1`.
 
@@ -3814,7 +3814,7 @@ or En-function,
 
 .. math ::
 
-    \mathrm{E}_n(z) = \int_1^{\infty} \frac{e^{-zt}}{t^n} dt,
+    \operatorname{E}_n(z) = \int_1^{\infty} \frac{e^{-zt}}{t^n} dt,
 
 where `n` and `z` may both be complex numbers. The case with `n = 1` is
 also given by :func:`~mpmath.e1`.
@@ -3851,11 +3851,11 @@ rational-exponential function::
 """
 
 e1 = r"""
-Computes the exponential integral `\mathrm{E}_1(z)`, given by
+Computes the exponential integral `\operatorname{E}_1(z)`, given by
 
 .. math ::
 
-    \mathrm{E}_1(z) = \int_z^{\infty} \frac{e^{-t}}{t} dt.
+    \operatorname{E}_1(z) = \int_z^{\infty} \frac{e^{-t}}{t} dt.
 
 This is equivalent to :func:`~mpmath.expint` with `n = 1`.
 
@@ -3885,18 +3885,18 @@ with negated argument, except for an imaginary branch cut term::
 """
 
 ei = r"""
-Computes the exponential integral or Ei-function, `\mathrm{Ei}(x)`.
+Computes the exponential integral or Ei-function, `\operatorname{Ei}(x)`.
 The exponential integral is defined as
 
 .. math ::
 
-  \mathrm{Ei}(x) = \int_{-\infty\,}^x \frac{e^t}{t} \, dt.
+  \operatorname{Ei}(x) = \int_{-\infty\,}^x \frac{e^t}{t} \, dt.
 
 When the integration range includes `t = 0`, the exponential
 integral is interpreted as providing the Cauchy principal value.
 
 For real `x`, the Ei-function behaves roughly like
-`\mathrm{Ei}(x) \approx \exp(x) + \log(|x|)`.
+`\operatorname{Ei}(x) \approx \exp(x) + \log(|x|)`.
 
 The Ei-function is related to the more general family of exponential
 integral functions denoted by `E_n`, which are available as :func:`~mpmath.expint`.
@@ -3980,11 +3980,11 @@ hypergeometric function `\,_2F_2`::
 
 li = r"""
 Computes the logarithmic integral or li-function
-`\mathrm{li}(x)`, defined by
+`\operatorname{li}(x)`, defined by
 
 .. math ::
 
-    \mathrm{li}(x) = \int_0^x \frac{1}{\log t} \, dt
+    \operatorname{li}(x) = \int_0^x \frac{1}{\log t} \, dt
 
 The logarithmic integral has a singularity at `x = 1`.
 
@@ -3993,10 +3993,10 @@ logarithmic integral (used in number theory)
 
 .. math ::
 
-    \mathrm{Li}(x) = \int_2^x \frac{1}{\log t} \, dt.
+    \operatorname{Li}(x) = \int_2^x \frac{1}{\log t} \, dt.
 
 These two functions are related via the simple identity
-`\mathrm{Li}(x) = \mathrm{li}(x) - \mathrm{li}(2)`.
+`\operatorname{Li}(x) = \operatorname{li}(x) - \operatorname{li}(2)`.
 
 The logarithmic integral should also not be confused with
 the polylogarithm (also denoted by Li), which is implemented
@@ -4053,8 +4053,8 @@ The logarithmic integral grows like `O(x/\log(x))`::
     4.3619719871407e+97
 
 The prime number theorem states that the number of primes less
-than `x` is asymptotic to `\mathrm{Li}(x)` (equivalently
-`\mathrm{li}(x)`). For example, it is known that there are
+than `x` is asymptotic to `\operatorname{Li}(x)` (equivalently
+`\operatorname{li}(x)`). For example, it is known that there are
 exactly 1,925,320,391,606,803,968,923 prime numbers less than
 `10^{23}` [1]. The logarithmic integral provides a very
 accurate estimate::
@@ -4082,7 +4082,7 @@ Computes the cosine integral,
 
 .. math ::
 
-    \mathrm{Ci}(x) = -\int_x^{\infty} \frac{\cos t}{t}\,dt
+    \operatorname{Ci}(x) = -\int_x^{\infty} \frac{\cos t}{t}\,dt
     = \gamma + \log x + \int_0^x \frac{\cos t - 1}{t}\,dt
 
 **Examples**
@@ -4149,7 +4149,7 @@ Computes the sine integral,
 
 .. math ::
 
-    \mathrm{Si}(x) = \int_0^x \frac{\sin t}{t}\,dt.
+    \operatorname{Si}(x) = \int_0^x \frac{\sin t}{t}\,dt.
 
 The sine integral is thus the antiderivative of the sinc
 function (see :func:`~mpmath.sinc`).
@@ -4211,7 +4211,7 @@ in analogy with the cosine integral (see :func:`~mpmath.ci`) as
 
 .. math ::
 
-    \mathrm{Chi}(x) = -\int_x^{\infty} \frac{\cosh t}{t}\,dt
+    \operatorname{Chi}(x) = -\int_x^{\infty} \frac{\cosh t}{t}\,dt
     = \gamma + \log x + \int_0^x \frac{\cosh t - 1}{t}\,dt
 
 Some values and limits::
@@ -4242,7 +4242,7 @@ in analogy with the sine integral (see :func:`~mpmath.si`) as
 
 .. math ::
 
-    \mathrm{Shi}(x) = \int_0^x \frac{\sinh t}{t}\,dt.
+    \operatorname{Shi}(x) = \int_0^x \frac{\sinh t}{t}\,dt.
 
 Some values and limits::
 
@@ -4939,7 +4939,7 @@ agm = r"""
     b_{n+1} = \sqrt{a_n b_n}
 
 This function can be called with a single argument, computing
-`\mathrm{agm}(a,1) = \mathrm{agm}(1,a)`.
+`\operatorname{agm}(a,1) = \operatorname{agm}(1,a)`.
 
 **Examples**
 
@@ -4966,7 +4966,7 @@ The arithmetic-geometric mean is scale-invariant::
     >>> 10*agm(e, pi)
     29.261085515723
 
-As an order-of-magnitude estimate, `\mathrm{agm}(1,x) \approx x`
+As an order-of-magnitude estimate, `\operatorname{agm}(1,x) \approx x`
 for large `x`::
 
     >>> agm(10**10)
@@ -4974,7 +4974,7 @@ for large `x`::
     >>> agm(10**50)
     1.34814309345871e+48
 
-For tiny `x`, `\mathrm{agm}(1,x) \approx -\pi/(2 \log(x/4))`::
+For tiny `x`, `\operatorname{agm}(1,x) \approx -\pi/(2 \log(x/4))`::
 
     >>> agm('0.01')
     0.262166887202249
@@ -6255,7 +6255,7 @@ product:
     \left[\left(1+\frac{z}{n}\right)^ne^{-z+z^2/(2n)}\right]
 
 For positive integers `n`, we have have relation to superfactorials
-`G(n) = \mathrm{sf}(n-2) = 0! \cdot 1! \cdots (n-2)!`.
+`G(n) = \operatorname{sf}(n-2) = 0! \cdot 1! \cdots (n-2)!`.
 
 **Examples**
 
@@ -6365,9 +6365,9 @@ consecutive factorials
 
 .. math ::
 
-    \mathrm{sf}(n) = \prod_{k=1}^n k!
+    \operatorname{sf}(n) = \prod_{k=1}^n k!
 
-For general complex `z`, `\mathrm{sf}(z)` is defined
+For general complex `z`, `\operatorname{sf}(z)` is defined
 in terms of the Barnes G-function (see :func:`~mpmath.barnesg`).
 
 **Examples**
@@ -6958,7 +6958,7 @@ based on Schoenfeld's inequality
 
 .. math ::
 
-    |\pi(x) - \mathrm{li}(x)| < \frac{\sqrt x \log x}{8 \pi}
+    |\pi(x) - \operatorname{li}(x)| < \frac{\sqrt x \log x}{8 \pi}
 
 is returned. This estimate is rigorous assuming the truth of
 the Riemann hypothesis, and can be computed very quickly.
@@ -7017,9 +7017,9 @@ as
     P(s) = \sum_p \frac{1}{p^s}
 
 where the sum is taken over all prime numbers `p`. Although
-this sum only converges for `\mathrm{Re}(s) > 1`, the
+this sum only converges for `\Re(s) > 1`, the
 function is defined by analytic continuation in the
-half-plane `\mathrm{Re}(s) > 0`.
+half-plane `\Re(s) > 0`.
 
 **Examples**
 
@@ -7050,7 +7050,7 @@ Euler constants::
     >>> mertens-euler
     -0.31571845205389007685
 
-The analytic continuation to `0 < \mathrm{Re}(s) \le 1`
+The analytic continuation to `0 < \Re(s) \le 1`
 is implemented. In this strip the function exhibits
 very complex behavior; on the unit interval, it has poles at
 `1/n` for every squarefree integer `n`::
@@ -7062,11 +7062,11 @@ very complex behavior; on the unit interval, it has poles at
     >>> primezeta(0.5+10j)
     (0.54892423556409790529 + 0.45626803423487934264j)
 
-Although evaluation works in principle for any `\mathrm{Re}(s) > 0`,
+Although evaluation works in principle for any `\Re(s) > 0`,
 it should be noted that the evaluation time increases exponentially
 as `s` approaches the imaginary axis.
 
-For large `\mathrm{Re}(s)`, `P(s)` is asymptotic to `2^{-s}`::
+For large `\Re(s)`, `P(s)` is asymptotic to `2^{-s}`::
 
     >>> primezeta(inf)
     0.0
@@ -7124,7 +7124,7 @@ Computes the polylogarithm, defined by the sum
 
 .. math ::
 
-    \mathrm{Li}_s(z) = \sum_{k=1}^{\infty} \frac{z^k}{k^s}.
+    \operatorname{Li}_s(z) = \sum_{k=1}^{\infty} \frac{z^k}{k^s}.
 
 This series is convergent only for `|z| < 1`, so elsewhere
 the analytic continuation is implied.
@@ -7261,7 +7261,7 @@ In general, :func:`~mpmath.bell` computes
 
 .. math ::
 
-    B_n(x) = e^{-x} \left(\mathrm{sinc}(\pi n) + E_n(x)\right)
+    B_n(x) = e^{-x} \left(\operatorname{sinc}(\pi n) + E_n(x)\right)
 
 where `E_n(x)` is the generalized exponential function implemented
 by :func:`~mpmath.polyexp`. This is an extension of Dobinski's formula [1],
@@ -7361,7 +7361,7 @@ In terms of the Bell polynomials,
 
 .. math ::
 
-    E_s(z) = e^z B_s(z) - \mathrm{sinc}(\pi s).
+    E_s(z) = e^z B_s(z) - \operatorname{sinc}(\pi s).
 
 Note that `B_n(x)` and `e^{-x} E_n(x)` are identical if `n`
 is a nonzero integer, but not otherwise. In particular, they differ
@@ -7636,7 +7636,7 @@ factor is required for some arguments when inverting the square root.
 
 Error functions:
 
-`\sqrt{\pi} z^{2(a-1)} \mathrm{erfc}(z) = G^{2,0}_{1,2} \left( \left.
+`\sqrt{\pi} z^{2(a-1)} \operatorname{erfc}(z) = G^{2,0}_{1,2} \left( \left.
 \begin{matrix} a \\ a-1, a-\frac{1}{2}
 \end{matrix} \; \right| \; z, \frac{1}{2} \right)`
 
@@ -7687,19 +7687,19 @@ Computes the Clausen sine function, defined formally by the series
 
 .. math ::
 
-    \mathrm{Cl}_s(z) = \sum_{k=1}^{\infty} \frac{\sin(kz)}{k^s}.
+    \operatorname{Cl}_s(z) = \sum_{k=1}^{\infty} \frac{\sin(kz)}{k^s}.
 
-The special case `\mathrm{Cl}_2(z)` (i.e. ``clsin(2,z)``) is the classical
+The special case `\operatorname{Cl}_2(z)` (i.e. ``clsin(2,z)``) is the classical
 "Clausen function". More generally, the Clausen function is defined for
 complex `s` and `z`, even when the series does not converge. The
 Clausen function is related to the polylogarithm (:func:`~mpmath.polylog`) as
 
 .. math ::
 
-    \mathrm{Cl}_s(z) = \frac{1}{2i}\left(\mathrm{Li}_s\left(e^{iz}\right) -
-                       \mathrm{Li}_s\left(e^{-iz}\right)\right)
+    \operatorname{Cl}_s(z) = \frac{1}{2i}\left(\operatorname{Li}_s\left(e^{iz}\right) -
+                       \operatorname{Li}_s\left(e^{-iz}\right)\right)
 
-    = \mathrm{Im}\left[\mathrm{Li}_s(e^{iz})\right] \quad (s, z \in \mathbb{R}),
+    = \Im\left[\operatorname{Li}_s(e^{iz})\right] \quad (s, z \in \mathbb{R}),
 
 and this representation can be taken to provide the analytic continuation of the
 series. The complementary function :func:`~mpmath.clcos` gives the corresponding
@@ -7734,7 +7734,7 @@ using elementary functions::
     >>> nsum(lambda k: sin(k*z)/k, [1,inf])
     0.2047709230104579724675985
 
-The classical Clausen function `\mathrm{Cl}_2(\theta)` gives the
+The classical Clausen function `\operatorname{Cl}_2(\theta)` gives the
 value of the integral `\int_0^{\theta} -\ln(2\sin(x/2)) dx` for
 `0 < \theta < 2 \pi`::
 
@@ -7812,18 +7812,18 @@ Computes the Clausen cosine function, defined formally by the series
 
 .. math ::
 
-    \mathrm{\widetilde{Cl}}_s(z) = \sum_{k=1}^{\infty} \frac{\cos(kz)}{k^s}.
+    \operatorname{\widetilde{Cl}}_s(z) = \sum_{k=1}^{\infty} \frac{\cos(kz)}{k^s}.
 
 This function is complementary to the Clausen sine function
 :func:`~mpmath.clsin`. In terms of the polylogarithm,
 
 .. math ::
 
-    \mathrm{\widetilde{Cl}}_s(z) =
-        \frac{1}{2}\left(\mathrm{Li}_s\left(e^{iz}\right) +
-        \mathrm{Li}_s\left(e^{-iz}\right)\right)
+    \operatorname{\widetilde{Cl}}_s(z) =
+        \frac{1}{2}\left(\operatorname{Li}_s\left(e^{iz}\right) +
+        \operatorname{Li}_s\left(e^{-iz}\right)\right)
 
-    = \mathrm{Re}\left[\mathrm{Li}_s(e^{iz})\right] \quad (s, z \in \mathbb{R}).
+    = \operatorname{Re}\left[\operatorname{Li}_s(e^{iz})\right] \quad (s, z \in \mathbb{R}).
 
 **Examples**
 
@@ -8051,7 +8051,7 @@ of the Bessel J function of a rotated argument
 
 .. math ::
 
-    J_n\left(x e^{3\pi i/4}\right) = \mathrm{ber}_n(x) + i \mathrm{bei}_n(x).
+    J_n\left(x e^{3\pi i/4}\right) = \operatorname{ber}_n(x) + i \operatorname{bei}_n(x).
 
 The imaginary part is given by :func:`~mpmath.bei`.
 
@@ -8096,7 +8096,7 @@ of the (rescaled) Bessel K function of a rotated argument
 
 .. math ::
 
-    e^{-\pi i/2} K_n\left(x e^{3\pi i/4}\right) = \mathrm{ker}_n(x) + i \mathrm{kei}_n(x).
+    e^{-\pi i/2} K_n\left(x e^{3\pi i/4}\right) = \operatorname{ker}_n(x) + i \operatorname{kei}_n(x).
 
 The imaginary part is given by :func:`~mpmath.kei`.
 
@@ -9275,13 +9275,13 @@ in terms of Jacobi theta functions as
 
 .. math ::
 
-    \mathrm{sn}(u,m) = \frac{\vartheta_3(0,q)}{\vartheta_2(0,q)}
+    \operatorname{sn}(u,m) = \frac{\vartheta_3(0,q)}{\vartheta_2(0,q)}
         \frac{\vartheta_1(t,q)}{\vartheta_4(t,q)}
 
-    \mathrm{cn}(u,m) = \frac{\vartheta_4(0,q)}{\vartheta_2(0,q)}
+    \operatorname{cn}(u,m) = \frac{\vartheta_4(0,q)}{\vartheta_2(0,q)}
         \frac{\vartheta_2(t,q)}{\vartheta_4(t,q)}
 
-    \mathrm{dn}(u,m) = \frac{\vartheta_4(0,q)}{\vartheta_3(0,q)}
+    \operatorname{dn}(u,m) = \frac{\vartheta_4(0,q)}{\vartheta_3(0,q)}
         \frac{\vartheta_3(t,q)}{\vartheta_4(t,q)},
 
 or more generally computes a ratio of two such functions. Here
@@ -9293,19 +9293,19 @@ specify the elliptic parameter `k` with ``k=<value>``.
 The first argument should be a two-character string specifying the
 function using any combination of ``'s'``, ``'c'``, ``'d'``, ``'n'``. These
 letters respectively denote the basic functions
-`\mathrm{sn}(u,m)`, `\mathrm{cn}(u,m)`, `\mathrm{dn}(u,m)`, and `1`.
+`\operatorname{sn}(u,m)`, `\operatorname{cn}(u,m)`, `\operatorname{dn}(u,m)`, and `1`.
 The identifier specifies the ratio of two such functions.
 For example, ``'ns'`` identifies the function
 
 .. math ::
 
-    \mathrm{ns}(u,m) = \frac{1}{\mathrm{sn}(u,m)}
+    \operatorname{ns}(u,m) = \frac{1}{\operatorname{sn}(u,m)}
 
 and ``'cd'`` identifies the function
 
 .. math ::
 
-    \mathrm{cd}(u,m) = \frac{\mathrm{cn}(u,m)}{\mathrm{dn}(u,m)}.
+    \operatorname{cd}(u,m) = \frac{\operatorname{cn}(u,m)}{\operatorname{dn}(u,m)}.
 
 If called with only the first argument, a function object
 evaluating the chosen function for given arguments is returned.
@@ -9501,12 +9501,12 @@ series would converge too slowly::
 
 eulernum = r"""
 Gives the `n`-th Euler number, defined as the `n`-th derivative of
-`\mathrm{sech}(t) = 1/\cosh(t)` evaluated at `t = 0`. Equivalently, the
+`\operatorname{sech}(t) = 1/\cosh(t)` evaluated at `t = 0`. Equivalently, the
 Euler numbers give the coefficients of the Taylor series
 
 .. math ::
 
-    \mathrm{sech}(t) = \sum_{n=0}^{\infty} \frac{E_n}{n!} t^n.
+    \operatorname{sech}(t) = \sum_{n=0}^{\infty} \frac{E_n}{n!} t^n.
 
 The Euler numbers are closely related to Bernoulli numbers
 and Bernoulli polynomials. They can also be evaluated in terms of

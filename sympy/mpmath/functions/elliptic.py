@@ -10,7 +10,7 @@ a function which satisfies
     f(z + 2 \omega_1) = f(z + 2 \omega_2) = f(z)
 
 for some half-periods `\omega_1, \omega_2` with
-`\mathrm{Im}[\omega_1 / \omega_2] > 0`. The canonical elliptic
+`\Im[\omega_1 / \omega_2] > 0`. The canonical elliptic
 functions are the Jacobi elliptic functions. More broadly, this section
 includes  quasi-doubly periodic functions (such as the Jacobi theta
 functions) and other functions useful in the study of elliptic functions.
@@ -23,7 +23,7 @@ The usual parameters are the elliptic nome `q`, which usually
 must satisfy `|q| < 1`; the elliptic parameter `m` (an arbitrary
 complex number); the elliptic modulus `k` (an arbitrary complex
 number); and the half-period ratio `\tau`, which usually must
-satisfy `\mathrm{Im}[\tau] > 0`.
+satisfy `\Im[\tau] > 0`.
 These quantities can be expressed in terms of each other
 using the following relations:
 

@@ -951,7 +951,7 @@ class MatrixMethods(object):
 
         .. math ::
 
-            \frac{1}{\sqrt{\mathrm{rank}(A)}} \|A\|_F \le \|A\|_2 \le \|A\|_F
+            \frac{1}{\sqrt{\operatorname{rank}(A)}} \|A\|_F \le \|A\|_2 \le \|A\|_F
 
         The Frobenius norm lacks some mathematical properties that might
         be expected of a norm.
