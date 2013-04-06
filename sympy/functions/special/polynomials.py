@@ -821,7 +821,7 @@ class assoc_legendre(Function):
 
     .. math::
         P_n^m(x) = (-1)^m (1 - x^2)^{\frac{m}{2}}
-                   \frac{\mathrm{d}^m P_n(x)}{\mathrm{d} x^m}
+                   \frac{d^m P_n(x)}{d x^m}
 
     Associated Legendre polynomial are orthogonal on [-1, 1] with:
 

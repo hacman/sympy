@@ -293,7 +293,7 @@ def Beta(name, alpha, beta):
     The density of the Beta distribution is given by
 
     .. math::
-        f(x) := \frac{x^{\alpha-1}(1-x)^{\beta-1}} {\mathrm{B}(\alpha,\beta)}
+        f(x) := \frac{x^{\alpha-1}(1-x)^{\beta-1}} {B(\alpha, \beta)}
 
     with :math:`x \in [0,1]`.
 
@@ -882,7 +882,7 @@ def FDistribution(name, d1, d2):
     .. math::
         f(x) := \frac{\sqrt{\frac{(d_1 x)^{d_1} d_2^{d_2}}
                 {(d_1 x + d_2)^{d_1 + d_2}}}}
-                {x \mathrm{B} \left(\frac{d_1}{2}, \frac{d_2}{2}\right)}
+                {x B\left(\frac{d_1}{2}, \frac{d_2}{2}\right)}
 
     with :math:`x > 0`.
 
@@ -950,7 +950,7 @@ def FisherZ(name, d1, d2):
     The density of the Fisher's Z distribution is given by
 
     .. math::
-        f(x) := \frac{2d_1^{d_1/2} d_2^{d_2/2}} {\mathrm{B}(d_1/2, d_2/2)}
+        f(x) := \frac{2d_1^{d_1/2} d_2^{d_2/2}} B(d_1/2, d_2/2)
                 \frac{e^{d_1z}}{\left(d_1e^{2z}+d_2\right)^{\left(d_1+d_2\right)/2}}
 
 

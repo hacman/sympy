@@ -37,7 +37,7 @@ class lerchphi(Function):
     Assume now `\operatorname{Re}(a) > 0`. The integral representation
 
     .. math:: \Phi_0(z, s, a) = \int_0^\infty \frac{t^{s-1} e^{-at}}{1 - ze^{-t}}
-                                \frac{\mathrm{d}t}{\Gamma(s)}
+                                \frac{dt}{\Gamma(s)}
 
     provides an analytic continuation to :math:`\mathbb{C} - [1, \infty)`.
     Finally, for :math:`x \in (1, \infty)` we find
@@ -219,7 +219,7 @@ class polylog(Function):
     polylogarithm is related to the ordinary logarithm (see examples), and that
 
     .. math:: \operatorname{Li}_{s+1}(z) =
-                    \int_0^z \frac{\operatorname{Li}_s(t)}{t} \mathrm{d}t.
+                    \int_0^z \frac{\operatorname{Li}_s(t)}{t} dt.
 
     The polylogarithm is a special case of the Lerch transcendent:
 

@@ -328,7 +328,7 @@ class meijerg(TupleParametersBase):
     .. math ::
          \frac{1}{2 \pi i} \int_L \frac{\prod_{j=1}^m \Gamma(b_j - s)
          \prod_{j=1}^n \Gamma(1 - a_j + s)}{\prod_{j=m+1}^q \Gamma(1- b_j +s)
-         \prod_{j=n+1}^p \Gamma(a_j - s)} z^s \mathrm{d}s,
+         \prod_{j=n+1}^p \Gamma(a_j - s)} z^s ds,
 
     where :math:`\Gamma(z)` is the gamma function. There are three possible
     contours which we will not describe in detail here (see the references).

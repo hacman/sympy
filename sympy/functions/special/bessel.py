@@ -81,8 +81,8 @@ class besselj(BesselBase):
     satisfying Bessel's differential equation
 
     .. math ::
-        z^2 \frac{\mathrm{d}^2 w}{\mathrm{d}z^2}
-        + z \frac{\mathrm{d}w}{\mathrm{d}z} + (z^2 - \nu^2) w = 0,
+        z^2 \frac{d^2 w}{dz^2}
+        + z \frac{dw}{dz} + (z^2 - \nu^2) w = 0,
 
     with Laurent expansion
 
@@ -267,8 +267,8 @@ class besseli(BesselBase):
     The Bessel I function is a solution to the modified Bessel equation
 
     .. math ::
-        z^2 \frac{\mathrm{d}^2 w}{\mathrm{d}z^2}
-        + z \frac{\mathrm{d}w}{\mathrm{d}z} + (z^2 + \nu^2)^2 w = 0.
+        z^2 \frac{d^2 w}{dz^2}
+        + z \frac{dw}{dz} + (z^2 + \nu^2)^2 w = 0.
 
     It can be defined as
 
@@ -557,8 +557,8 @@ class jn(SphericalBesselBase):
     This function is a solution to the spherical Bessel equation
 
     .. math ::
-        z^2 \frac{\mathrm{d}^2 w}{\mathrm{d}z^2}
-          + 2z \frac{\mathrm{d}w}{\mathrm{d}z} + (z^2 - \nu(\nu + 1)) w = 0.
+        z^2 \frac{d^2 w}{dz^2}
+          + 2z \frac{dw}{dz} + (z^2 - \nu(\nu + 1)) w = 0.
 
     It can be defined as
 

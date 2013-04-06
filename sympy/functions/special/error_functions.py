@@ -943,7 +943,7 @@ class Ei(Function):
 
     The name *exponential integral* comes from the following statement:
 
-    .. math:: \operatorname{Ei}(x) = \int_{-\infty}^x \frac{e^t}{t} \mathrm{d}t
+    .. math:: \operatorname{Ei}(x) = \int_{-\infty}^x \frac{e^t}{t} dt
 
     If the integral is interpreted as a Cauchy principal value, this statement
     holds for `x > 0` and `\operatorname{Ei}(x)` as defined above.
@@ -955,7 +955,7 @@ class Ei(Function):
 
     However, the following statement holds for all `x \in \mathbb{R}^*`:
 
-    .. math:: \int_{-\infty}^x \frac{e^t}{t} \mathrm{d}t =
+    .. math:: \int_{-\infty}^x \frac{e^t}{t} dt =
               \frac{\operatorname{Ei}\left(|x|e^{i \arg(x)}\right) +
                     \operatorname{Ei}\left(|x|e^{- i \arg(x)}\right)}{2},
 
@@ -1093,7 +1093,7 @@ class expint(Function):
     Hence for :math:`z` with positive real part we have
 
     .. math:: \operatorname{E}_\nu(z)
-              =   \int_1^\infty \frac{e^{-zt}}{z^\nu} \mathrm{d}t,
+              =   \int_1^\infty \frac{e^{-zt}}{z^\nu} dt,
 
     which explains the name.
 
@@ -1568,7 +1568,7 @@ class Si(TrigonometricIntegral):
 
     This function is defined by
 
-    .. math:: \operatorname{Si}(z) = \int_0^z \frac{\sin{t}}{t} \mathrm{d}t.
+    .. math:: \operatorname{Si}(z) = \int_0^z \frac{\sin{t}}{t} dt.
 
     It is an entire function.
 
@@ -1648,8 +1648,8 @@ class Ci(TrigonometricIntegral):
     This function is defined for positive `x` by
 
     .. math:: \operatorname{Ci}(x) = \gamma + \log{x}
-                         + \int_0^x \frac{\cos{t} - 1}{t} \mathrm{d}t
-           = -\int_x^\infty \frac{\cos{t}}{t} \mathrm{d}t,
+                         + \int_0^x \frac{\cos{t} - 1}{t} dt
+           = -\int_x^\infty \frac{\cos{t}}{t} dt,
 
     where `\gamma` is the Euler-Mascheroni constant.
 
@@ -1740,7 +1740,7 @@ class Shi(TrigonometricIntegral):
 
     This function is defined by
 
-    .. math:: \operatorname{Shi}(z) = \int_0^z \frac{\sinh{t}}{t} \mathrm{d}t.
+    .. math:: \operatorname{Shi}(z) = \int_0^z \frac{\sinh{t}}{t} dt.
 
     It is an entire function.
 
@@ -1820,7 +1820,7 @@ class Chi(TrigonometricIntegral):
     This function is defined for positive :math:`x` by
 
     .. math:: \operatorname{Chi}(x) = \gamma + \log{x}
-                         + \int_0^x \frac{\cosh{t} - 1}{t} \mathrm{d}t,
+                         + \int_0^x \frac{\cosh{t} - 1}{t} dt,
 
     where :math:`\gamma` is the Euler-Mascheroni constant.
 
@@ -2003,7 +2003,7 @@ class fresnels(FresnelIntegral):
 
     This function is defined by
 
-    .. math:: \operatorname{S}(z) = \int_0^z \sin{\frac{\pi}{2} t^2} \mathrm{d}t.
+    .. math:: \operatorname{S}(z) = \int_0^z \sin{\frac{\pi}{2} t^2} dt.
 
     It is an entire function.
 
@@ -2110,7 +2110,7 @@ class fresnelc(FresnelIntegral):
 
     This function is defined by
 
-    .. math:: \operatorname{C}(z) = \int_0^z \cos{\frac{\pi}{2} t^2} \mathrm{d}t.
+    .. math:: \operatorname{C}(z) = \int_0^z \cos{\frac{\pi}{2} t^2} dt.
 
     It is an entire function.
 

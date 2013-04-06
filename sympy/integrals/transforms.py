@@ -317,7 +317,7 @@ def mellin_transform(f, x, s, **hints):
     r"""
     Compute the Mellin transform `F(s)` of `f(x)`,
 
-    .. math :: F(s) = \int_0^\infty x^{s-1} f(x) \mathrm{d}x.
+    .. math :: F(s) = \int_0^\infty x^{s-1} f(x) dx.
 
     For all "sensible" functions, this converges absolutely in a strip
       `a < \operatorname{Re}(s) < b`.
@@ -813,7 +813,7 @@ def inverse_mellin_transform(F, s, x, strip, **hints):
 
     This can be defined as
 
-    .. math:: f(x) = \int_{c - i\infty}^{c + i\infty} x^{-s} F(s) \mathrm{d}s,
+    .. math:: f(x) = \int_{c - i\infty}^{c + i\infty} x^{-s} F(s) ds,
 
     for any `c` in the fundamental strip. Under certain regularity
     conditions on `F` and/or `f`,
@@ -1087,7 +1087,7 @@ def laplace_transform(f, t, s, **hints):
     r"""
     Compute the Laplace Transform `F(s)` of `f(t)`,
 
-    .. math :: F(s) = \int_0^\infty e^{-st} f(t) \mathrm{d}t.
+    .. math :: F(s) = \int_0^\infty e^{-st} f(t) dt.
 
     For all "sensible" functions, this converges absolutely in a
     half plane  `a < \operatorname{Re}(s)`.
@@ -1229,7 +1229,7 @@ def inverse_laplace_transform(F, s, t, plane=None, **hints):
     r"""
     Compute the inverse Laplace transform of `F(s)`, defined as
 
-    .. math :: f(t) = \int_{c-i\infty}^{c+i\infty} e^{st} F(s) \mathrm{d}s,
+    .. math :: f(t) = \int_{c-i\infty}^{c+i\infty} e^{st} F(s) ds,
 
     for `c` so large that `F(s)` has no singularites in the
     half-plane `\operatorname{Re}(s) > c-\epsilon`.
@@ -1332,7 +1332,7 @@ def fourier_transform(f, x, k, **hints):
     Compute the unitary, ordinary-frequency Fourier transform of `f`, defined
     as
 
-    .. math:: F(k) = \int_{-\infty}^\infty f(x) e^{-2\pi i x k} \mathrm{d} x.
+    .. math:: F(k) = \int_{-\infty}^\infty f(x) e^{-2\pi i x k} dx.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`FourierTransform` object.
@@ -1383,7 +1383,7 @@ def inverse_fourier_transform(F, k, x, **hints):
     Compute the unitary, ordinary-frequency inverse Fourier transform of `F`,
     defined as
 
-    .. math:: f(x) = \int_{-\infty}^\infty F(k) e^{2\pi i x k} \mathrm{d} k.
+    .. math:: f(x) = \int_{-\infty}^\infty F(k) e^{2\pi i x k} dk.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`InverseFourierTransform` object.
@@ -1487,7 +1487,7 @@ def sine_transform(f, x, k, **hints):
     Compute the unitary, ordinary-frequency sine transform of `f`, defined
     as
 
-    .. math:: F(k) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty f(x) \sin(2\pi x k) \mathrm{d} x.
+    .. math:: F(k) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty f(x) \sin(2\pi x k) dx.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`SineTransform` object.
@@ -1536,7 +1536,7 @@ def inverse_sine_transform(F, k, x, **hints):
     Compute the unitary, ordinary-frequency inverse sine transform of `F`,
     defined as
 
-    .. math:: f(x) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty F(k) \sin(2\pi x k) \mathrm{d} k.
+    .. math:: f(x) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty F(k) \sin(2\pi x k) dk.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`InverseSineTransform` object.
@@ -1586,7 +1586,7 @@ def cosine_transform(f, x, k, **hints):
     Compute the unitary, ordinary-frequency cosine transform of `f`, defined
     as
 
-    .. math:: F(k) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty f(x) \cos(2\pi x k) \mathrm{d} x.
+    .. math:: F(k) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty f(x) \cos(2\pi x k) dx.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`CosineTransform` object.
@@ -1635,7 +1635,7 @@ def inverse_cosine_transform(F, k, x, **hints):
     Compute the unitary, ordinary-frequency inverse cosine transform of `F`,
     defined as
 
-    .. math:: f(x) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty F(k) \cos(2\pi x k) \mathrm{d} k.
+    .. math:: f(x) = \sqrt{\frac{2}{\pi}} \int_{0}^\infty F(k) \cos(2\pi x k) dk.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`InverseCosineTransform` object.
@@ -1672,7 +1672,7 @@ def _hankel_transform(f, r, k, nu, name, simplify=True):
     """
     Compute a general Hankel transform
 
-    .. math:: F_\nu(k) = \int_{0}^\infty f(r) J_\nu(k r) r \mathrm{d} r.
+    .. math:: F_\nu(k) = \int_{0}^\infty f(r) J_\nu(k r) r dr.
     """
     from sympy import besselj, oo
     F = integrate(f*besselj(nu, k*r)*r, (r, 0, oo))
@@ -1736,7 +1736,7 @@ def hankel_transform(f, r, k, nu, **hints):
     r"""
     Compute the Hankel transform of `f`, defined as
 
-    .. math:: F_\nu(k) = \int_{0}^\infty f(r) J_\nu(k r) r \mathrm{d} r.
+    .. math:: F_\nu(k) = \int_{0}^\infty f(r) J_\nu(k r) r dr.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`HankelTransform` object.
@@ -1792,7 +1792,7 @@ def inverse_hankel_transform(F, k, r, nu, **hints):
     r"""
     Compute the inverse Hankel transform of `F` defined as
 
-    .. math:: f(r) = \int_{0}^\infty F_\nu(k) J_\nu(k r) k \mathrm{d} k.
+    .. math:: f(r) = \int_{0}^\infty F_\nu(k) J_\nu(k r) k dk.
 
     If the transform cannot be computed in closed form, this
     function returns an unevaluated :class:`InverseHankelTransform` object.

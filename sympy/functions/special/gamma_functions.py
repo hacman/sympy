@@ -131,7 +131,7 @@ class lowergamma(Function):
     It can be defined as the meromorphic continuation of
 
     .. math ::
-        \gamma(s, x) = \int_0^x t^{s-1} e^{-t} \mathrm{d}t.
+        \gamma(s, x) = \int_0^x t^{s-1} e^{-t} dt.
 
     This can be shown to be the same as
 
@@ -258,7 +258,7 @@ class uppergamma(Function):
     It can be defined as the meromorphic continuation of
 
     .. math ::
-        \Gamma(s, x) = \int_x^\infty t^{s-1} e^{-t} \mathrm{d}t
+        \Gamma(s, x) = \int_x^\infty t^{s-1} e^{-t} d
                      = \Gamma(s) - \gamma(s, x).
 
     where `\gamma(s, x)` is the lower incomplete gamma function,
