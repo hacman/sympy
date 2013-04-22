@@ -1,9 +1,11 @@
 from sympy.combinatorics.analytic import (Multiton,
+            CombinatorialClass,
             CombinatorialAtom, CombinatorialSum, SEQ,
             CombinatorialProduct, CYC,
             Empty,
             )
 from sympy.abc import z
+from sympy import catalan
 
 def test_multiton():
     class MyAtom(object):
@@ -33,12 +35,47 @@ def test_Sum():
     s = one + zero
     assert s.gf == 2*z
 
+def test_Product():
+    Z = CombinatorialAtom()
+    C = Z*Z
+    z = Symbol('z')
+    assert C.gf == z**2
+
 def test_Seq():
     Z = CombinatorialAtom(0)
     seq = SEQ(Z)
     assert seq.gf == 1/(1-z)
 
-def test_cyc():
+def test_Cyc():
     Z = CombinatorialAtom(0)
     cyc = CYC(Z)
     z = Symbol('z')
+
+def test_Catalan():
+    '''
+    Counting rooted plane binary trees gives the Catalan numbers
+    '''
+    Z = CombinatorialAtom()
+    T = CombinatorialClass('T')
+    ## a binary Tree is either empty or it is a node and two attached trees
+    T = Empty() + Z * T * T
+    ser = T.gf.series(n=25)
+    z = Symbol('z')
+    for k in range(1, 25):
+        assert ser.coeff(z**k) == catalan(k)
+
+def test_binary_strings():
+    '''
+    Counting binary strings gives 2**n
+    '''
+    Z0 = CombinatorialAtom('0')
+    Z1 = CombinatorialAtom('1')
+    B = CombinatorialClass('B')
+    ## a binary string is either Empty or it's a zero or a one followed by
+    ## a binary string
+    B = Empty() + (Z0 + Z1) * B
+    ser = B.gf.series(n=32)
+    z = Symbol('z')
+    for k in range(1, 32): ## shouldn't need the 1 here, but sympy considers
+                           ##  the O() term a coefficient of z**0
+        assert ser.coeff(z**k) == 2**k
