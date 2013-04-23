@@ -1,9 +1,8 @@
 #!/usr/bin/env python
 
 from sympy.core.assumptions import ManagedProperties
-from sympy.core import Basic, Symbol, Function
-
-z = Symbol('z')
+from sympy.core import Basic
+from sympy.abc import z
 
 class Multiton(ManagedProperties):
     '''
@@ -54,9 +53,6 @@ class CombinatorialAtom(CombinatorialClass):
 
     def __repr__(self):
         return str(self)
-
-class Zero(CombinatorialAtom):
-    _gf = 1
 
 class Empty(CombinatorialAtom):
     _gf = 1

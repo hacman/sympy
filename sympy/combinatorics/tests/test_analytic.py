@@ -1,9 +1,9 @@
-from sympy.core import Symbol
 from sympy.combinatorics.analytic import (Multiton,
             CombinatorialAtom, CombinatorialSum, SEQ,
             CombinatorialProduct,
-            Zero, Empty,
+            Empty,
             )
+from sympy.abc import z
 
 def test_multiton():
     class MyAtom(object):
@@ -24,7 +24,6 @@ def test_Atom():
     assert CombinatorialAtom() is zero
     assert str(one) == 'Z_1', str(one)
 
-    z = Symbol('z')
     assert zero.gf == z
     assert one.gf == z
 
@@ -32,11 +31,9 @@ def test_Sum():
     one = CombinatorialAtom(1)
     zero = CombinatorialAtom(0)
     s = one + zero
-    z = Symbol('z')
     assert s.gf == 2*z
 
 def test_Seq():
     Z = CombinatorialAtom(0)
     seq = SEQ(Z)
-    z = Symbol('z')
     assert seq.gf == 1/(1-z)
