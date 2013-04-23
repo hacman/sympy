@@ -1,6 +1,6 @@
 from sympy.combinatorics.analytic import (Multiton,
             CombinatorialAtom, CombinatorialSum, SEQ,
-            CombinatorialProduct,
+            CombinatorialProduct, CYC,
             Empty,
             )
 from sympy.abc import z
@@ -37,3 +37,8 @@ def test_Seq():
     Z = CombinatorialAtom(0)
     seq = SEQ(Z)
     assert seq.gf == 1/(1-z)
+
+def test_cyc():
+    Z = CombinatorialAtom(0)
+    cyc = CYC(Z)
+    z = Symbol('z')

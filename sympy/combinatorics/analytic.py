@@ -1,15 +1,17 @@
 #!/usr/bin/env python
 '''
 Analytic Combinatorics
-Sedgewick, R. and P. Flajolet. Analytic Combinatorics. Cambridge University
-Press, 2007.
+Flajolet, P. and R. Sedgewick. Analytic Combinatorics. Electronic edition.
+Cambridge University Press, 2009.
+http://algo.inria.fr/flajolet/Publications/book.pdf
 '''
+import pdb
 
 from sympy.core.assumptions import ManagedProperties
 from sympy.abc import z
-from sympy.core import Basic, Dummy
-from sympy import oo, exp, log, Sum, totient
-
+from sympy.core import Basic, Dummy, Function
+from sympy import oo, exp, log, Sum, solve, Integer
+from sympy.ntheory import totient
 
 class Multiton(ManagedProperties):
     '''
@@ -21,19 +23,57 @@ class Multiton(ManagedProperties):
     _instances = {}
     def __call__(cls, *args, **kwargs):
         if not args:
-            args = (0, )
-        key = (cls, str(args[0]))
+            key = (cls, '0')
+        else:
+            key = (cls, str(args[0]))
 
         if key not in cls._instances:
             cls._instances[key] = super(Multiton, cls).__call__()
-            cls._instances[key].name = str(args[0])
+            if args:
+                cls._instances[key].name = str(args[0])
 
         return cls._instances[key]
 
 class CombinatorialClass(Basic):
+    def __new__(cls, arg='C', gf=None):
+        obj = Basic.__new__(cls)
+        obj._gf = Function(arg)(z)
+        obj.name = arg
+        obj._did_compute = False
+        return obj
+
     @property
     def gf(self):
+        if not self._did_compute:
+            self._gf_compute()
         return self._gf
+
+    def _gf_compute(self):
+        self._did_compute = True
+        if self._gf.has(Function):
+            functions = self._gf.find(Function)
+            if len(functions) > 1:
+                raise NotImplementedError("Systems of %d generating functions are not supported" % len(functions))
+            # print 'F', self.name, functions #; pdb.set_trace()
+            if not isinstance(self._gf, Function):
+                f = functions.pop()
+                # print 'solve', self._gf
+                solutions = solve(self._gf - f, f)
+                if solutions:
+                    # print 'hello', solutions
+                    for func in solutions:
+                        good = True
+                        ser = func.series(n=10)
+                        if ser.coeff(1/z) != 0:
+                            good = False
+                            continue
+                        for n in range(10):
+                            if ser.coeff(z**n) < 0:
+                                good = False
+                                break
+
+                        if good:
+                            self._gf = func
 
     def __add__(self, other):
         return CombinatorialSum(self, other)
@@ -51,23 +91,34 @@ class CombinatorialClass(Basic):
         else:
             raise NotImplementedError('pow')
 
+    def __str__(self):
+        return self.name
+
 class CombinatorialAtom(CombinatorialClass):
     __metaclass__ = Multiton
-    _gf = z
+
+    def __new__(cls, arg='0'):
+        obj = CombinatorialClass.__new__(cls, arg)
+        obj._gf = z
+        return obj
 
     def __str__(self):
         return 'Z_' + self.name
-
-    def __repr__(self):
-        return str(self)
+        ## TODO: would like to have just plain 'Z'
 
 class Empty(CombinatorialAtom):
-    _gf = 1
+    def __new__(cls):
+       obj = CombinatorialAtom.__new__(cls, 'E')
+       obj._gf = Integer(1)
+       return obj
+
 
 class CombinatorialSum(CombinatorialClass):
     def __new__(cls, a, b):
-        c = CombinatorialClass.__new__(cls)
-        c._gf = a.gf + b.gf
+        c = CombinatorialClass.__new__(cls, 'SUM')
+        # print 'pre-sum', c._gf
+        c._gf = a._gf + b._gf
+        # print 'new sum', a._gf, b._gf
         c.a = a
         c.b = b
         return c
@@ -77,8 +128,10 @@ class CombinatorialSum(CombinatorialClass):
 
 class CombinatorialProduct(CombinatorialClass):
     def __new__(cls, a, b):
-        c = CombinatorialClass.__new__(cls)
-        c._gf = a.gf * b.gf
+        c = CombinatorialClass.__new__(cls, 'PROD')
+        # print 'pre-product', c._gf
+        c._gf = a._gf * b._gf
+        # print 'new product', a._gf, b._gf
         c.a = a
         c.b = b
         return c
@@ -90,7 +143,7 @@ class SEQ(CombinatorialClass):
     def __new__(cls, other):
         c = CombinatorialClass.__new__(cls)
         c.a = other
-        c._gf = 1/(1-c.a.gf)
+        c._gf = 1/(1-c.a._gf)
         return c
 
     def __str__(self):
@@ -101,7 +154,7 @@ class MSET(CombinatorialClass):
         c = CombinatorialClass.__new__(cls)
         c.a = other
         k = Dummy('k', integer=True)
-        c._gf = exp(Sum(c.a.gf.subs(z, z**k)/k, (k, 1, oo)))
+        c._gf = exp(Sum(c.a._gf.subs(z, z**k)/k, (k, 1, oo)))
         return c
 
     def __str__(self):
@@ -112,7 +165,7 @@ class PSET(CombinatorialClass):
         c = CombinatorialClass.__new__(cls)
         c.a = other
         k = Dummy('k', integer=True)
-        c._gf = exp(Sum((-1)**(k-1)*c.a.gf.subs(z, z**k)/k, (k, 1, oo)))
+        c._gf = exp(Sum((-1)**(k-1)*c.a._gf.subs(z, z**k)/k, (k, 1, oo)))
         return c
 
     def __str__(self):
@@ -123,7 +176,7 @@ class CYC(CombinatorialClass):
         c = CombinatorialClass.__new__(cls)
         c.a = other
         k = Dummy('k', integer=True)
-        c._gf = Sum(totient(k)/k) * log(1/(1-c.a.gf.subs(z,z**k)), (k, 1, oo))
+        c._gf = Sum(Totient(k)/k * log(1/(1-c.a._gf.subs(z,z**k))), (k, 1, oo))
         return c
 
     def __str__(self):
