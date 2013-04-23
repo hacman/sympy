@@ -38,7 +38,6 @@ def test_Sum():
 def test_Product():
     Z = CombinatorialAtom()
     C = Z*Z
-    z = Symbol('z')
     assert C.gf == z**2
 
 def test_Seq():
@@ -49,7 +48,6 @@ def test_Seq():
 def test_Cyc():
     Z = CombinatorialAtom(0)
     cyc = CYC(Z)
-    z = Symbol('z')
 
 def test_Catalan():
     '''
@@ -60,9 +58,8 @@ def test_Catalan():
     ## a binary Tree is either empty or it is a node and two attached trees
     T = Empty() + Z * T * T
     ser = T.gf.series(n=25)
-    z = Symbol('z')
-    for k in range(1, 25):
-        assert ser.coeff(z**k) == catalan(k)
+    for k in range(25):
+        assert ser.coeff(z, k) == catalan(k)
 
 def test_binary_strings():
     '''
@@ -75,7 +72,5 @@ def test_binary_strings():
     ## a binary string
     B = Empty() + (Z0 + Z1) * B
     ser = B.gf.series(n=32)
-    z = Symbol('z')
-    for k in range(1, 32): ## shouldn't need the 1 here, but sympy considers
-                           ##  the O() term a coefficient of z**0
-        assert ser.coeff(z**k) == 2**k
+    for k in range(32):
+        assert ser.coeff(z, k) == 2**k

@@ -5,13 +5,11 @@ Flajolet, P. and R. Sedgewick. Analytic Combinatorics. Electronic edition.
 Cambridge University Press, 2009.
 http://algo.inria.fr/flajolet/Publications/book.pdf
 '''
-import pdb
-
 from sympy.core.assumptions import ManagedProperties
-from sympy.abc import z
 from sympy.core import Basic, Dummy, Function
 from sympy import oo, exp, log, Sum, solve, Integer
 from sympy.ntheory import totient
+from sympy.abc import z
 
 class Multiton(ManagedProperties):
     '''
@@ -54,7 +52,7 @@ class CombinatorialClass(Basic):
             functions = self._gf.find(Function)
             if len(functions) > 1:
                 raise NotImplementedError("Systems of %d generating functions are not supported" % len(functions))
-            # print 'F', self.name, functions #; pdb.set_trace()
+            # print 'F', self.name, functions
             if not isinstance(self._gf, Function):
                 f = functions.pop()
                 # print 'solve', self._gf
@@ -183,3 +181,4 @@ class CYC(CombinatorialClass):
         return 'CYC(' + str(self.a) + ')'
 
 # restricted constructions (p.30)
+# labelled structures

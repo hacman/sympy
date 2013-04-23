@@ -153,6 +153,74 @@ def test_sympy__combinatorics__partitions__IntegerPartition():
     assert _test_args(IntegerPartition([1]))
 
 
+def test_sympy__combinatorics__analytic__CombinatorialClass():
+    from sympy.combinatorics.analytic import CombinatorialClass
+    c = CombinatorialClass('0')
+    assert _test_args(c)
+
+
+def test_sympy__combinatorics__analytic__CombinatorialAtom():
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    a = CombinatorialAtom('0')
+    assert _test_args(a)
+
+
+def test_sympy__combinatorics__analytic__Empty():
+    from sympy.combinatorics.analytic import Empty
+    e = Empty('0')
+    assert _test_args(e)
+
+
+def test_sympy__combinatorics__analytic__CombinatorialSum():
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    from sympy.combinatorics.analytic import CombinatorialSum
+    a = CombinatorialAtom('a')
+    b = CombinatorialAtom('b')
+    s = CombinatorialSum(a, b)
+    assert _test_args(s)
+
+
+def test_sympy__combinatorics__analytic__CombinatorialProduct():
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    from sympy.combinatorics.analytic import CombinatorialProduct
+    a = CombinatorialAtom('a')
+    b = CombinatorialAtom('b')
+    p = CombinatorialProduct(a, b)
+    assert _test_args(p)
+
+
+def test_sympy__combinatorics__analytic__SEQ():
+    from sympy.combinatorics.analytic import SEQ
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    a = CombinatorialAtom('a')
+    s = SEQ(a)
+    assert _test_args(s)
+
+
+def test_sympy__combinatorics__analytic__CYC():
+    from sympy.combinatorics.analytic import CYC
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    a = CombinatorialAtom('a')
+    c = CYC(a)
+    assert _test_args(c)
+
+
+def test_sympy__combinatorics__analytic__MSET():
+    from sympy.combinatorics.analytic import MSET
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    a = CombinatorialAtom('a')
+    m = MSET(a)
+    assert _test_args(m)
+
+
+def test_sympy__combinatorics__analytic__PSET():
+    from sympy.combinatorics.analytic import PSET
+    from sympy.combinatorics.analytic import CombinatorialAtom
+    a = CombinatorialAtom('a')
+    p = PSET(a)
+    assert _test_args(p)
+
+
 def test_sympy__concrete__products__Product():
     from sympy.concrete.products import Product
     assert _test_args(Product(x, (x, 0, 10)))
