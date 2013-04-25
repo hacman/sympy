@@ -42,6 +42,9 @@ class CombinatorialClass(Basic):
 
     @property
     def gf(self):
+        '''
+        Generating function for the combinatorial class
+        '''
         if not self._did_compute:
             self._gf_compute()
         return self._gf
