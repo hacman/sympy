@@ -2,7 +2,7 @@ from sympy.combinatorics.analytic import (Multiton,
             CombinatorialClass,
             CombinatorialAtom, CombinatorialSum, SEQ,
             CombinatorialProduct, CYC,
-            Empty,
+            NeutralClass,
             )
 from sympy.abc import z
 from sympy import catalan
@@ -37,8 +37,11 @@ def test_Sum():
 
 def test_Product():
     Z = CombinatorialAtom()
-    C = Z*Z
-    assert C.gf == z**2
+    CC = Z*Z
+    assert CC.gf == z**2
+    NN= NeutralClass()
+    assert (CC * NN).gf == CC.gf
+    assert (NN * CC).gf == CC.gf
 
 def test_Seq():
     Z = CombinatorialAtom(0)
@@ -56,7 +59,7 @@ def test_Catalan():
     Z = CombinatorialAtom()
     T = CombinatorialClass('T')
     ## a binary Tree is either empty or it is a node and two attached trees
-    T = Empty() + Z * T * T
+    T = NeutralClass() + Z * T * T
     ser = T.gf.series(n=25)
     for k in range(25):
         assert ser.coeff(z, k) == catalan(k)
@@ -70,7 +73,7 @@ def test_binary_strings():
     B = CombinatorialClass('B')
     ## a binary string is either Empty or it's a zero or a one followed by
     ## a binary string
-    B = Empty() + (Z0 + Z1) * B
+    B = NeutralClass() + (Z0 + Z1) * B
     ser = B.gf.series(n=32)
     for k in range(32):
         assert ser.coeff(z, k) == 2**k

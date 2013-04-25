@@ -165,9 +165,9 @@ def test_sympy__combinatorics__analytic__CombinatorialAtom():
     assert _test_args(a)
 
 
-def test_sympy__combinatorics__analytic__Empty():
-    from sympy.combinatorics.analytic import Empty
-    e = Empty('0')
+def test_sympy__combinatorics__analytic__NeutralClass():
+    from sympy.combinatorics.analytic import NeutralClass
+    e = NeutralClass('0')
     assert _test_args(e)
 
 

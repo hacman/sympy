@@ -104,12 +104,11 @@ class CombinatorialAtom(CombinatorialClass):
         return 'Z_' + self.name
         ## TODO: would like to have just plain 'Z'
 
-class Empty(CombinatorialAtom):
+class NeutralClass(CombinatorialAtom):
     def __new__(cls):
        obj = CombinatorialAtom.__new__(cls, 'E')
        obj._gf = Integer(1)
        return obj
-
 
 class CombinatorialSum(CombinatorialClass):
     def __new__(cls, a, b):
@@ -174,7 +173,7 @@ class CYC(CombinatorialClass):
         c = CombinatorialClass.__new__(cls)
         c.a = other
         k = Dummy('k', integer=True)
-        c._gf = Sum(Totient(k)/k * log(1/(1-c.a._gf.subs(z,z**k))), (k, 1, oo))
+        c._gf = Sum(totient(k)/k * log(1/(1-c.a._gf.subs(z,z**k))), (k, 1, oo))
         return c
 
     def __str__(self):
