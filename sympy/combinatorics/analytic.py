@@ -3,7 +3,9 @@
 Analytic Combinatorics
 Flajolet, P. and R. Sedgewick. Analytic Combinatorics. Electronic edition.
 Cambridge University Press, 2009.
-http://algo.inria.fr/flajolet/Publications/book.pdf
+
+Available for free in PDF form from 
+http://algo.inria.fr/flajolet/Publications/AnaCombi/anacombi.html
 '''
 from sympy.core.assumptions import ManagedProperties
 from sympy.core import Basic, Dummy, Function
@@ -16,7 +18,7 @@ class Multiton(ManagedProperties):
     Like a singleton, except there can be different labels on the class. Only
     one object with each name can be instantiated.
 
-    use it as a __metaclass__
+    Use it as a ``__metaclass__``.
     '''
     _instances = {}
     def __call__(cls, *args, **kwargs):
