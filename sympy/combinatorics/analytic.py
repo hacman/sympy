@@ -33,6 +33,13 @@ class Multiton(ManagedProperties):
         return cls._instances[key]
 
 class CombinatorialClass(Basic):
+    '''
+    This is the basic construct in analytic combinatorics. As the name
+    indicates, it represents a combinatorial class. Every other class
+    in the analytic combinatorics module inherits from this. In particular,
+    all classes have the ``.gf`` attribute to access their generating
+    function.
+    '''
     def __new__(cls, arg='C', gf=None):
         obj = Basic.__new__(cls)
         obj._gf = Function(arg)(z)
@@ -96,6 +103,17 @@ class CombinatorialClass(Basic):
         return self.name
 
 class CombinatorialAtom(CombinatorialClass):
+    '''
+    An atom is a combinatorial class with a single element of size `1`.
+
+    Examples
+    ========
+    >>> from sympy.combinatorics.analytic import CombinatorialAtom
+    >>> a = CombinatorialAtom()
+    >>> a.gf
+    z
+    '''
+
     __metaclass__ = Multiton
 
     def __new__(cls, arg='0'):
@@ -108,12 +126,41 @@ class CombinatorialAtom(CombinatorialClass):
         ## TODO: would like to have just plain 'Z'
 
 class NeutralClass(CombinatorialAtom):
+    '''
+    A neutral class is a combinatorial class `\mathcal{E}` with a
+    single element of size `0`.
+
+    Examples
+    ========
+    >>> from sympy.combinatorics.analytic import NeutralClass
+    >>> n = NeutralClass()
+    >>> n.gf
+    1
+    '''
+
     def __new__(cls):
        obj = CombinatorialAtom.__new__(cls, 'E')
        obj._gf = Integer(1)
        return obj
 
 class CombinatorialSum(CombinatorialClass):
+    '''
+    A combinatorial sum is a class constructed from two existing classes
+    and is represented as `\mathcal{A} + \mathcal{B}`.
+
+    Examples
+    ========
+    >>> from sympy.combinatorics.analytic import NeutralClass, CombinatorialAtom
+    >>> from sympy.combinatorics.analytic import CombinatorialSum
+    >>> n = NeutralClass()
+    >>> m = NeutralClass()
+    >>> (n + m).gf
+    2
+    >>> a = CombinatorialAtom()
+    >>> (a + n).gf
+    z + 1
+    '''
+
     def __new__(cls, a, b):
         c = CombinatorialClass.__new__(cls, 'SUM')
         # print 'pre-sum', c._gf

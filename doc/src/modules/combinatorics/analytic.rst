@@ -35,7 +35,8 @@ Analytic combinatorics has two collections of powerful *transfer
 theorems*, mapping definitions of combinatorial structures to the
 appropriate generating function and then allowing extraction of asymptotic
 representations of the coefficients of the generating function. Full
-explanation and proofs can be found in Flajolet & Sedgewick.
+explanation and proofs can be found in Flajolet & Sedgewick
+[Flajolet2009]_.
 
 Alternately, we can forego the second class of transfer theorems and
 use SymPy to get the coefficients of the series representation of the
@@ -62,19 +63,35 @@ Sequence
 
 `\operatorname{S\small{EQ}}(\mathcal{A})`
 
-Summary of Transfer Theorems
-----------------------------
+Multiset
+~~~~~~~~
 
-    +--------------------------------------------+---------------------------------------+
-    | Construction                               | Generating Function                   |
-    +============================================+=======================================+
-    | `\mathcal{A} + \mathcal{B}`                | `A(z) + B(z)`                         |
-    +--------------------------------------------+---------------------------------------+
-    | `\mathcal{A} \times \mathcal{B}`           | `A(z) B(z)`                           |
-    +--------------------------------------------+---------------------------------------+
-    | `\operatorname{S\small{EQ}}(\mathcal{A})`  | `\displaystyle \frac{1}{1-A(z)}`      |
-    +--------------------------------------------+---------------------------------------+
+Power Set
+~~~~~~~~~
 
+Cycle
+~~~~~
+
+Summary of Symbolic Transfer Theorems
+-------------------------------------
+
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+    | Construction                               | Generating Function                                                                |
+    +============================================+====================================================================================+
+    | `\mathcal{A} + \mathcal{B}`                | `\displaystyle A(z) + B(z)`                                                        |
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+    | `\mathcal{A} \times \mathcal{B}`           | `\displaystyle A(z) B(z)`                                                          |
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+    | `\operatorname{S\small{EQ}}(\mathcal{A})`  | `\displaystyle \frac{1}{1-A(z)}`                                                   |
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+    | `\operatorname{M\small{SET}}(\mathcal{A})` | `\displaystyle \exp\left( \sum_{k\geq 1}{\frac{z^k}{k}} \right)`                   |
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+    | `\operatorname{P\small{SET}}(\mathcal{A})` | `\displaystyle \exp\left( \sum_{k\geq 1}{\frac{(-1)^{k-1}}{k}} A(z^k)\right)`      |
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+    | `\operatorname{C\small{YC}}(\mathcal{A})`  | `\displaystyle \sum_{k\geq 1}{\frac{\phi(k)}{k}}\log{\frac{1}{1-A(z^k)}}`          |
+    +--------------------------------------------+------------------------------------------------------------------------------------+
+
+Here, `\phi(k)` is Euler's totient function.
 
 API
 ---
