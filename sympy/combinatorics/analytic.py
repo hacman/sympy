@@ -63,6 +63,8 @@ class CombinatorialClass(Basic):
         if self._gf.has(Function):
             functions = self._gf.find(Function)
             if len(functions) > 1:
+                # FIXME: this eliminates use of SymPy functions in generating
+                # function equations, too
                 raise NotImplementedError("Systems of %d generating functions are not supported" % len(functions))
             # print 'F', self.name, functions
             if not isinstance(self._gf, Function):
@@ -71,14 +73,19 @@ class CombinatorialClass(Basic):
                 solutions = solve(self._gf - f, f)
                 if solutions:
                     # print 'hello', solutions
+
+                    ## try to find "good" solutions: no terms z**n for n < 0
+                    ## and all positive integer coefficients
                     for func in solutions:
                         good = True
                         ser = func.series(n=10)
-                        if ser.coeff(1/z) != 0:
+                        _, exponent = ser.compute_leading_term(z).as_coeff_exponent(z)
+                        if exponent < 0:
                             good = False
                             continue
                         for n in range(10):
-                            if ser.coeff(z**n) < 0:
+                            c = ser.coeff(z, n)
+                            if c < 0 or not c.is_Integer:
                                 good = False
                                 break
 
