@@ -16,7 +16,7 @@ from sympy.abc import z
 class Multiton(ManagedProperties):
     '''
     Like a singleton, except there can be different labels on the class. Only
-    one object with each name can be instantiated.
+    one object with each label can be instantiated.
 
     Use it as a ``__metaclass__``.
     '''
@@ -142,8 +142,8 @@ class NeutralClass(CombinatorialAtom):
     Examples
     ========
     >>> from sympy.combinatorics.analytic import NeutralClass
-    >>> n = NeutralClass()
-    >>> n.gf
+    >>> A = NeutralClass()
+    >>> A.gf
     1
     '''
 
@@ -161,12 +161,12 @@ class CombinatorialSum(CombinatorialClass):
     ========
     >>> from sympy.combinatorics.analytic import NeutralClass, CombinatorialAtom
     >>> from sympy.combinatorics.analytic import CombinatorialSum
-    >>> n = NeutralClass()
-    >>> m = NeutralClass()
-    >>> (n + m).gf
+    >>> A = NeutralClass()
+    >>> B = NeutralClass()
+    >>> (A + B).gf
     2
-    >>> a = CombinatorialAtom()
-    >>> (a + n).gf
+    >>> C = CombinatorialAtom()
+    >>> (C + A).gf
     z + 1
     '''
 

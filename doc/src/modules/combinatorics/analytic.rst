@@ -3,6 +3,8 @@
 Analytic Combinatorics
 ======================
 
+.. module:: sympy.combinatorics.analytic
+
 Analytic combinatorics is an approach to studying combinatorial
 structures where the central object of study is the generating function.
 A *combinatorial class* is a set, `\mathcal{C}`, together with a
@@ -21,7 +23,7 @@ regular upper-case letter for the generating function, and a subscripted
 upper-case letter for the values of the size funciton, which are
 also the coefficients of the generating function. Square
 brackets surrounding a power of `z` preceding a generating function,
-`[z^N]C(z)`  denotes "the coefficient of `z^N` in `C`".
+`[z^N]C(z)` denotes "the coefficient of `z^N` in `C`".
 
 The basic identity that allows analytic combinatorics to work is
 
@@ -52,9 +54,9 @@ structures, which then translates immediately to generating function equations.
 As a preview, consider the following examples of increasingly complicated
 structures that can be defined:
 
-  1. Positive Integers, `\mathcal{I}`: one of the simplest constructions is the
-     set of positive integers, `\{1, 2, 3, ...\}` with the size function being
-     the number of positive integers of magnitude `N`, of which there is
+  1. Non-negative Integers, `\mathcal{I}`: one of the simplest constructions is
+     the set of positive integers, `\{0, 1, 2, 3, ...\}` with the size function
+     being the number of positive integers of magnitude `N`, of which there is
      obviously just `1`. In the language of analytic combinatorics, the
      positive integers are a sequence of atoms,
      `\mathcal{I} = \operatorname{S\small{EQ}}(\mathcal{Z})`. The symbolic
@@ -99,6 +101,9 @@ structures that can be defined:
      be a distinguished root node. An *internal node* is a node with two
      children, and the counting function for the class is the number of
      internal nodes in the tree. A binary tree could be empty, as well.
+
+     .. TODO: provide graphics
+
      Therefore, a binary tree can be empty, or it is a node with two binary
      trees attached.  The symbolic definition of binary trees is
      `\mathcal{T} = \mathcal{E} + \mathcal{Z} \times \mathcal{T} \times \mathcal{T}`.
@@ -107,7 +112,7 @@ structures that can be defined:
      .. math ::
          T(z) = 1 + zT(z)^2
 
-     which, we can solve with the quadratic equation (or SymPy):
+     which we can solve with the quadratic equation (or SymPy):
 
      .. math ::
          T(z) = \frac{1-\sqrt{1-4z}}{2z}.
@@ -120,44 +125,35 @@ structures that can be defined:
 
      but they can also be computed using SymPy:
 
+     >>> from sympy import sqrt
+     >>> from sympy.abc import z
      >>> T = (1-sqrt(1-4*z))/(2*z)
      >>> T.series()
                 2      3       4       5    ⎛ 6⎞
      1 + z + 2⋅z  + 5⋅z  + 14⋅z  + 42⋅z  + O⎝z ⎠
 
+Even this final example is a very basic and well-known combinatorial structure,
+which may seem unimpressive to one familiar classical combinatorics.  The
+examples above are intentionally simple to show the approach of analytic
+combinatorics in familiar (or simple) situations.  The constructions of analytic
+combinatorics can be used for far more than novel things of deriving results
+about make familiar combinatorial structures and classes.  Variations on the
+well known cases and combinations of the constructions listed here provide and
+endless mix of new combinatorial structures, many of which would be difficult or
+impossible to study without the formalism of analytic combinatorics.
 
 Constructions
--------------
+=============
 
-The two basic combinatorial classes are the *neutral class*,
-`\mathcal{E}`, and the *atomic class*, `\mathcal{Z}`, which have a
-single element of size zero and one, respectively. By definition, their
-generating functions are `E(z)=1` and `Z(z)=z`. From these, one can
-build more elaborate structures using the operations of "disjoint sum",
-"Cartesian product", and "sequence", among others.
-
-Disjoint Union
-~~~~~~~~~~~~~~
-
-Product
-~~~~~~~
-
-Sequence
-~~~~~~~~
-
-`\operatorname{S\small{EQ}}(\mathcal{A})`
-
-Multiset
-~~~~~~~~
-
-Power Set
-~~~~~~~~~
-
-Cycle
-~~~~~
+This section provides an overview of the constructions that are available in
+analytic combinatorics and demonstrates how to use them in SymPy.
 
 Summary of Symbolic Transfer Theorems
 -------------------------------------
+
+Here is a summary of the symbolic transfer theorems between constructions and
+their generating functions. Each of these constructions is explained in some
+detail below, but the results are summarized here.
 
     +--------------------------------------------+------------------------------------------------------------------------------------+
     | Construction                               | Generating Function                                                                |
@@ -177,10 +173,15 @@ Summary of Symbolic Transfer Theorems
 
 Here, `\phi(k)` is Euler's totient function.
 
-API
----
+Basic Constructions
+-------------------
 
-.. module:: sympy.combinatorics.analytic
+The two basic combinatorial classes are the *neutral class*,
+`\mathcal{E}`, and the *atomic class*, `\mathcal{Z}`, which have a
+single element of size zero and one, respectively. By definition, their
+generating functions are `E(z)=1` and `Z(z)=z`. From these, one can
+build more elaborate structures using the operations of "disjoint sum",
+"Cartesian product", and "sequence", among others.
 
 .. autoclass:: CombinatorialClass
    :members:
@@ -191,20 +192,38 @@ API
 .. autoclass:: NeutralClass
    :members:
 
+Disjoint Sum
+------------
+
 .. autoclass:: CombinatorialSum
    :members:
+
+Product
+-------
 
 .. autoclass:: CombinatorialProduct
    :members:
 
+Sequence
+--------
+
 .. autoclass:: SEQ
    :members:
+
+Multiset
+--------
 
 .. autoclass:: MSET
    :members:
 
+Power Set
+---------
+
 .. autoclass:: PSET
    :members:
+
+Cycle
+-----
 
 .. autoclass:: CYC
    :members:
