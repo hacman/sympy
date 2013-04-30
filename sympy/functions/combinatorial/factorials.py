@@ -247,6 +247,12 @@ class factorial2(CombinatorialFunction):
     >>> factorial2(-1)
     1
 
+    References
+    ==========
+
+    .. http://mathworld.wolfram.com/DoubleFactorial.html 
+    .. http://oeis.org/A006882
+
     See Also
     ========
 

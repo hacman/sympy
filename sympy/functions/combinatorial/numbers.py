@@ -69,6 +69,7 @@ class fibonacci(Function):
 
     .. [1] http://en.wikipedia.org/wiki/Fibonacci_number
     .. [2] http://mathworld.wolfram.com/FibonacciNumber.html
+    .. [3] http://oeis.org/A000045
 
     See Also
     ========
@@ -124,6 +125,7 @@ class lucas(Function):
 
     .. [1] http://en.wikipedia.org/wiki/Lucas_number
     .. [2] http://mathworld.wolfram.com/LucasNumber.html
+    .. [3] http://oeis.org/A000032
 
     See Also
     ========
@@ -347,6 +349,7 @@ class bell(Function):
     .. [1] http://en.wikipedia.org/wiki/Bell_number
     .. [2] http://mathworld.wolfram.com/BellNumber.html
     .. [3] http://mathworld.wolfram.com/BellPolynomial.html
+    .. [4] http://oeis.org/A000110
 
     See Also
     ========
@@ -619,6 +622,7 @@ class euler(Function):
     .. [2] http://mathworld.wolfram.com/EulerNumber.html
     .. [3] http://en.wikipedia.org/wiki/Alternating_permutation
     .. [4] http://mathworld.wolfram.com/AlternatingPermutation.html
+    .. [5] http://oeis.org/A122045
 
     See Also
     ========
@@ -743,6 +747,7 @@ class catalan(Function):
     .. [2] http://mathworld.wolfram.com/CatalanNumber.html
     .. [3] http://functions.wolfram.com/GammaBetaErf/CatalanNumber/
     .. [4] http://geometer.org/mathcircles/catalan.pdf
+    .. [5] http://oeis.org/A000108
 
     See Also
     ========
@@ -959,6 +964,7 @@ def _AOP_product(n):
 
     The generating poly used here is the same as that listed in
     http://tinyurl.com/cep849r, but in a refactored form.
+
 
     """
     from collections import defaultdict
