@@ -59,6 +59,11 @@ class factorial(CombinatorialFunction):
        >>> factorial(2*n)
        factorial(2*n)
 
+       References
+       ==========
+
+       .. [1] http://oeis.org/A000142
+
        See Also
        ========
 
@@ -184,7 +189,9 @@ class subfactorial(CombinatorialFunction):
 
     References
     ==========
+
     .. [1] http://en.wikipedia.org/wiki/Subfactorial
+    .. [2] http://oeis.org/A000166
 
     Examples
     ========
@@ -250,7 +257,7 @@ class factorial2(CombinatorialFunction):
     References
     ==========
 
-    .. http://mathworld.wolfram.com/DoubleFactorial.html 
+    .. http://mathworld.wolfram.com/DoubleFactorial.html
     .. http://oeis.org/A006882
 
     See Also
@@ -281,8 +288,8 @@ class RisingFactorial(CombinatorialFunction):
                    rf(x, k) = x * (x+1) * ... * (x + k-1)
 
        where 'x' can be arbitrary expression and 'k' is an integer. For
-       more information check "Concrete mathematics" by Graham, pp. 66
-       or visit http://mathworld.wolfram.com/RisingFactorial.html page.
+       more information see the book *Concrete Mathematics* by  or visit
+       Wolfram Mathworld.
 
        Examples
        ========
@@ -298,6 +305,13 @@ class RisingFactorial(CombinatorialFunction):
 
        >>> rf(x, 5) == x*(1 + x)*(2 + x)*(3 + x)*(4 + x)
        True
+
+       References
+       ==========
+
+       .. [1] Graham, Knuth, and Patashnik. Concrete Mathematics, 2nd Edition.
+              Addison-Wesley Professional. 1994. Page 66.
+       .. [2] http://mathworld.wolfram.com/FallingFactorial.html
 
        See Also
        ========
@@ -352,8 +366,8 @@ class FallingFactorial(CombinatorialFunction):
                    ff(x, k) = x * (x-1) * ... * (x - k+1)
 
        where 'x' can be arbitrary expression and 'k' is an integer. For
-       more information check "Concrete mathematics" by Graham, pp. 66
-       or visit http://mathworld.wolfram.com/FallingFactorial.html page.
+       more information see the book *Concrete Mathematics* by  or visit
+       Wolfram Mathworld.
 
        >>> from sympy import ff
        >>> from sympy.abc import x
@@ -366,6 +380,13 @@ class FallingFactorial(CombinatorialFunction):
 
        >>> ff(x, 5) == x*(x-1)*(x-2)*(x-3)*(x-4)
        True
+
+       References
+       ==========
+
+       .. [1] Graham, Knuth, and Patashnik. Concrete Mathematics, 2nd Edition.
+              Addison-Wesley Professional. 1994. Page 66.
+       .. [2] http://mathworld.wolfram.com/FallingFactorial.html
 
        See Also
        ========
@@ -475,6 +496,11 @@ class binomial(CombinatorialFunction):
 
        >>> expand_func(binomial(n, 3))
        n*(n - 2)*(n - 1)/6
+
+       References
+       ==========
+       .. [1] http://oeis.org/A007318
+       .. [2] http://dlmf.nist.gov/26.3
 
     """
 

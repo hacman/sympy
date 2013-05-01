@@ -215,6 +215,7 @@ class bernoulli(Function):
     .. [2] http://en.wikipedia.org/wiki/Bernoulli_polynomial
     .. [3] http://mathworld.wolfram.com/BernoulliNumber.html
     .. [4] http://mathworld.wolfram.com/BernoulliPolynomial.html
+    .. [5] http://dlmf.nist.gov/24.2
 
     See Also
     ========
@@ -1204,6 +1205,8 @@ def stirling(n, k, d=None, kind=2, signed=False):
 
     .. [1] http://en.wikipedia.org/wiki/Stirling_numbers_of_the_first_kind
     .. [2] http://en.wikipedia.org/wiki/Stirling_numbers_of_the_second_kind
+    .. [3] http://oeis.org/A008275
+    .. [4] http://oeis.org/A008277
 
     See Also
     ========
