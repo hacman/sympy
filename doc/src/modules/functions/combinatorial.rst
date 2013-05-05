@@ -21,6 +21,9 @@ binomial
 .. autoclass:: sympy.functions.combinatorial.factorials.binomial
    :members:
 
+
+.. _catalan:
+
 catalan
 -------
 

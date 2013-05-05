@@ -45,6 +45,7 @@ Alternately, we can forego the second class of transfer theorems and
 use SymPy to get the coefficients of the series representation of the
 generating function.
 
+.. _acpreview:
 
 Preview of Symbolic Transfer Theorems
 -------------------------------------
@@ -52,15 +53,22 @@ Preview of Symbolic Transfer Theorems
 Analytic combinatorics provides a formal language for defining combinatorial
 structures, which then translates immediately to generating function equations.
 As a preview, consider the following examples of increasingly complicated
-structures that can be defined:
+structures that can be defined. You may not follow what is outlined here, but
+the important point is that *no steps have been omitted*. The symbolic method
+really allows direct translation of constructions to generating functions.
+The association between combinatorial constructions and the generating function
+equations they yield is given in the sections below.
 
   1. Non-negative Integers, `\mathcal{I}`: one of the simplest constructions is
      the set of positive integers, `\{0, 1, 2, 3, ...\}` with the size function
      being the number of positive integers of magnitude `N`, of which there is
      obviously just `1`. In the language of analytic combinatorics, the
      positive integers are a sequence of atoms,
-     `\mathcal{I} = \operatorname{S\small{EQ}}(\mathcal{Z})`. The symbolic
-     transfer theorem immediately gives
+
+     .. math ::
+       \mathcal{I} = \operatorname{S\small{EQ}}(\mathcal{Z}).
+
+     The symbolic transfer theorem immediately gives
 
      .. math ::
          I(z) = \frac{1}{1-z} = \sum_{N\geq0}{z^N}
@@ -73,7 +81,10 @@ structures that can be defined:
 
         - A binary string is either empty, or it is a zero or a one followed
           by another binary string. The symbolic representation of this is
-          `\mathcal{B} = \mathcal{E} + (\mathcal{Z}_0 + \mathcal{Z}_1) \times \mathcal{B}`
+
+          .. math ::
+            \mathcal{B} = \mathcal{E} + (\mathcal{Z}_0 + \mathcal{Z}_1) \times \mathcal{B}
+
           which gives the generating function equation `B(z) = 1 + 2zB(z)`.
           Solving for `B(z)` gives
 
@@ -84,7 +95,11 @@ structures that can be defined:
           `2^N` binary strings of length `N`.
 
         - Another way to construct binary strings is as a sequence of zeros and
-          ones: `\mathcal{B} = \operatorname{S\small{EQ}}(\mathcal{Z}_0 + \mathcal{Z}_1)`.
+          ones:
+
+          .. math ::
+            \mathcal{B} = \operatorname{S\small{EQ}}(\mathcal{Z}_0 + \mathcal{Z}_1).
+
           The symbolic method gives the generating function equation
 
           .. math ::
@@ -94,11 +109,34 @@ structures that can be defined:
           constructions give the same result in this case, verifying the
           consistency of the method.
 
+        - As a demonstration of how one can analyze variations on constructions,
+          consider enumerating binary strings with no two consecutive zeros. In
+          words, the recursive defintion of a binary string with no `00` is that
+          it can either empty or a `0` or it is `1` or `01` followed by a binary string
+          with no `00`.  The class `\mathcal{B}_{00}` is defined symbolically as
+
+          .. math ::
+            \mathcal{B}_{00} = \mathcal{E} + \mathcal{Z}_0 + (\mathcal{Z}_1  + \mathcal{Z}_0 \times \mathcal{Z}_1) \times \mathcal{B}_{00}
+
+          which has the generating function
+
+          .. math ::
+            B_{00}(z) = \frac{1+z}{1-z-z^2}
+
+          The coefficients of this function can be computed with SymPy:
+
+          >>> from sympy.abc import z
+          >>> ((1+z)/(1-z-z**2)).series()
+                       2      3      4       5    ⎛ 6⎞
+          1 + 2⋅z + 3⋅z  + 5⋅z  + 8⋅z  + 13⋅z  + O⎝z ⎠
+
+          and you might recognize them as the Fibonacci numbers.
+
   3. Binary trees, `\mathcal{T}`: As an example of a combinatorial question to
      which the answer is not immediately obvious, consider the problem of
      enumerating binary trees of a given size. Define a *binary tree* to be a
-     tree where every node has zero or two children.  Additionally, there must
-     be a distinguished root node. An *internal node* is a node with two
+     tree where every node has zero or two children.  Additionally, there is a
+     distinguished root node. An *internal node* is a node with two
      children, and the counting function for the class is the number of
      internal nodes in the tree. A binary tree could be empty, as well.
 
@@ -106,7 +144,10 @@ structures that can be defined:
 
      Therefore, a binary tree can be empty, or it is a node with two binary
      trees attached.  The symbolic definition of binary trees is
-     `\mathcal{T} = \mathcal{E} + \mathcal{Z} \times \mathcal{T} \times \mathcal{T}`.
+
+     .. math ::
+         \mathcal{T} = \mathcal{E} + \mathcal{Z} \times \mathcal{T} \times \mathcal{T}.
+
      This gives the generating function equation
 
      .. math ::
@@ -132,15 +173,18 @@ structures that can be defined:
                 2      3       4       5    ⎛ 6⎞
      1 + z + 2⋅z  + 5⋅z  + 14⋅z  + 42⋅z  + O⎝z ⎠
 
+     These are the famous :ref:`Catalan numbers<catalan>` [A000108]_.
+
 Even this final example is a very basic and well-known combinatorial structure,
 which may seem unimpressive to one familiar classical combinatorics.  The
 examples above are intentionally simple to show the approach of analytic
 combinatorics in familiar (or simple) situations.  The constructions of analytic
-combinatorics can be used for far more than novel things of deriving results
-about make familiar combinatorial structures and classes.  Variations on the
-well known cases and combinations of the constructions listed here provide and
-endless mix of new combinatorial structures, many of which would be difficult or
-impossible to study without the formalism of analytic combinatorics.
+combinatorics can be used for far more novel things than deriving results
+about familiar combinatorial structures and classes.  We have seen a small
+glimpse of the type of variations on the well known cases and combinations
+of the constructions listed here.  Additional variations provide an endless mix
+of new combinatorial structures, many of which would be difficult or impossible
+to study without the formalism of analytic combinatorics.
 
 Constructions
 =============
@@ -228,8 +272,14 @@ Cycle
 .. autoclass:: CYC
    :members:
 
+Examples
+========
+
+See the section :ref:`acpreview` for some basic examples. Here we will explore
+some of the other constructions in some depth.
+
 References
-----------
+==========
 
 .. [Flajolet2009] Flajolet, Philippe and Robert Sedgewick. Analytic
         Combinatorics.  New York: Cambridge University Press, 2009. Print.
@@ -238,3 +288,6 @@ References
 .. [Flajolet2013] Flajolet, Philippe and Robert Sedgewick. An Introduction to
         the Analysis of Algorithms, 2nd Edition.  Westford, Massachusetts:
         Addison-Wesley. 2013.
+
+.. [A000108] OEIS Foundation, Inc. The On-Line Encyclopedia of Integer Sequences.
+        http://oeis.org/A000108 

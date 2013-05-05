@@ -135,7 +135,7 @@ class CombinatorialAtom(CombinatorialClass):
         ## TODO: would like to have just plain 'Z'
 
 class NeutralClass(CombinatorialAtom):
-    '''
+    r'''
     A neutral class is a combinatorial class `\mathcal{E}` with a
     single element of size `0`.
 
@@ -153,9 +153,15 @@ class NeutralClass(CombinatorialAtom):
        return obj
 
 class CombinatorialSum(CombinatorialClass):
-    '''
-    A combinatorial sum is a class constructed from two existing classes
-    and is represented as `\mathcal{A} + \mathcal{B}`.
+    r'''
+    A combinatorial sum is a class `\mathcal{C}` constructed from two existing
+    classes by taking a disjoint union of their constituent elements. It is
+    represented as `\mathcal{C} = \mathcal{A} + \mathcal{B}`. The corresponding
+    operation on generating functions is pointwise addition: `A(z) + B(z)` which
+    is the same as term-by-term addition:
+
+    .. math ::
+        C_N = A_N + B_N
 
     Examples
     ========
@@ -170,20 +176,41 @@ class CombinatorialSum(CombinatorialClass):
     z + 1
     '''
 
-    def __new__(cls, a, b):
+    def __new__(cls, *args):
         c = CombinatorialClass.__new__(cls, 'SUM')
         # print 'pre-sum', c._gf
-        c._gf = a._gf + b._gf
+        c._gf = reduce(lambda x, y: x._gf + y._gf, args)
         # print 'new sum', a._gf, b._gf
-        c.a = a
-        c.b = b
+        c.summands = args
         return c
 
     def __str__(self):
         return str(self.a) + ' + ' + str(self.b)
 
 class CombinatorialProduct(CombinatorialClass):
+    r'''
+    A combinatorial product is a class `\mathcal{C}` constructed from two
+    existing classes by taking the cartesian product of their constituent
+    elements. It is represented as `\mathcal{A} \times \mathcal{B}`. The
+    corresponding operation on generating functions is pointwise multiplication
+    `A(z) \cdot B(z)`, which is a convolution of the terms:
+
+    .. math ::
+        C_N = \sum_{k=0}^{N}{ A_k C_{N-k} }
+    '''
     def __new__(cls, a, b):
+        ## TODO: accept any SymPy Integer
+        if a == 1:
+            return b
+        elif b == 1:
+            return a
+        elif isinstance(a, int):
+            b_list = [b] * a
+            return CombinatorialSum(*b_list)
+        elif isinstance(b, int):
+            a_list = [a] * b
+            return CombinatorialSum(*a_list)
+
         c = CombinatorialClass.__new__(cls, 'PROD')
         # print 'pre-product', c._gf
         c._gf = a._gf * b._gf

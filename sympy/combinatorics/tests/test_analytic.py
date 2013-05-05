@@ -5,7 +5,8 @@ from sympy.combinatorics.analytic import (Multiton,
             NeutralClass,
             )
 from sympy.abc import z
-from sympy import catalan
+from sympy import catalan, fibonacci
+from sympy.utilities.pytest import XFAIL
 
 def test_multiton():
     class MyAtom(object):
@@ -35,6 +36,16 @@ def test_Sum():
     s = one + zero
     assert s.gf == 2*z
 
+@XFAIL
+def test_int_Product():
+    Z = CombinatorialAtom()
+    CC = Z*10
+
+@XFAIL
+def test_Product_from_power():
+    Z = CombinatorialAtom()
+    CC = Z**9
+
 def test_Product():
     Z = CombinatorialAtom()
     CC = Z*Z
@@ -52,17 +63,16 @@ def test_Cyc():
     Z = CombinatorialAtom(0)
     cyc = CYC(Z)
 
-def test_Catalan():
+## examples from the documentation's "preview" of the symbolic method
+
+def test_integers():
     '''
-    Counting rooted plane binary trees gives the Catalan numbers
+    A sequence of atoms defines the integers.
     '''
-    Z = CombinatorialAtom()
-    T = CombinatorialClass('T')
-    ## a binary Tree is either empty or it is a node and two attached trees
-    T = NeutralClass() + Z * T * T
-    ser = T.gf.series(n=25)
-    for k in range(25):
-        assert ser.coeff(z, k) == catalan(k)
+    Z = CombinatorialAtom(0)
+    I = SEQ(Z)
+    ser = I.gf.series(z, 25)
+    [ser.coeff(z, k) for k in range(25)] == range(1, 25)
 
 def test_binary_strings():
     '''
@@ -77,3 +87,31 @@ def test_binary_strings():
     ser = B.gf.series(n=32)
     for k in range(32):
         assert ser.coeff(z, k) == 2**k
+
+def test_binary_strings_no_00():
+    '''
+    Counting binary strings with no consecutive 0s gives the Fibonacci numbers
+    '''
+    Z0 = CombinatorialAtom('0')
+    Z1 = CombinatorialAtom('1')
+    B00 = CombinatorialClass('B_00')
+    ## a binary string with no 00 is either:
+    ##   - Empty
+    ##   - a zero
+    ##   - a one or zero-one followed by a binary string with no 00
+    B00 = NeutralClass() + Z0 + (Z1 + Z0 * Z1) * B00
+    ser = B00.gf.series(n=32)
+    for k in range(32):
+        assert ser.coeff(z, k) == fibonacci(k+2)
+
+def test_Catalan():
+    '''
+    Counting rooted plane binary trees gives the Catalan numbers
+    '''
+    Z = CombinatorialAtom()
+    T = CombinatorialClass('T')
+    ## a binary Tree is either empty or it is a node and two attached trees
+    T = NeutralClass() + Z * T * T
+    ser = T.gf.series(n=25)
+    for k in range(25):
+        assert ser.coeff(z, k) == catalan(k)
