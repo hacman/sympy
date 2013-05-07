@@ -4,7 +4,7 @@ Analytic Combinatorics
 Flajolet, P. and R. Sedgewick. Analytic Combinatorics. Electronic edition.
 Cambridge University Press, 2009.
 
-Available for free in PDF form from 
+Available for free in PDF form from
 http://algo.inria.fr/flajolet/Publications/AnaCombi/anacombi.html
 '''
 from sympy.core.assumptions import ManagedProperties
@@ -197,6 +197,8 @@ class CombinatorialProduct(CombinatorialClass):
 
     .. math ::
         C_N = \sum_{k=0}^{N}{ A_k C_{N-k} }
+
+     .. TODO: example
     '''
     def __new__(cls, a, b):
         ## TODO: accept any SymPy Integer
@@ -223,7 +225,43 @@ class CombinatorialProduct(CombinatorialClass):
         return str(self.a) + ' x ' + str(self.b)
 
 class SEQ(CombinatorialClass):
-    def __new__(cls, other):
+    r'''
+    A sequence is a compound combinatorial class, defined as finite ordered
+    sequences of objects from another combinatorial class. Unlike with
+    mathematical sets, two sequences with the same elements present in a
+    different order from each other are considered distinct sequences.
+    Sequences of a given length `k` are simply the product of `k` copies of
+    a class with itself:
+
+    .. math ::
+        \operatorname{SEQ}_k (\mathcal{A}) = \underbrace{\mathcal{A} \times \cdots \times \mathcal{A}}_{k\: \mathrm{ copies}}
+
+    succinctly noted as `\mathcal{A}^k`. The corresponding operation on
+    generating functions is exponentiation: `A(z)^k`. The class of all sequences
+    is defined as
+
+    .. math ::
+        \operatorname{SEQ} (\mathcal{A}) = \mathcal{E} + \mathcal{A} + \mathcal{A}^2 + \mathcal{A}^3 + \cdots
+
+    with the generating function
+
+    .. math ::
+         1 + A(z) + A(z)^2 + A(z)^3 + \cdots
+
+    which is the geometric series in `A(z)`. This can be rewritten as
+
+    .. math ::
+         \frac{1}{1- A(z)}
+
+    It should be noted that in the sequence construction, the argument
+    `\mathcal{A}` can contain no element of size zero, otherwise the class fails
+    to be properly defined (it does not satisfy the finiteness condition).
+    Unfortunately, there is no simple formula relating the coefficients of a
+    sequence class to those of class from which it was constructed.
+
+     .. TODO: example
+    '''
+    def __new__(cls, other, k=None):
         c = CombinatorialClass.__new__(cls)
         c.a = other
         c._gf = 1/(1-c.a._gf)
@@ -233,6 +271,29 @@ class SEQ(CombinatorialClass):
         return 'SEQ(' + str(self.a) + ')'
 
 class MSET(CombinatorialClass):
+    r'''
+    A *multi-set* is a generalization of the mathematical set which allows
+    multiple copies of the same element of the set. Alternatively, one could
+    define it as a set whose elements have a multiplicity (which would always
+    be `1` for ordinary sets). Unlike with sequences (which also admit multiple
+    copies of elements), order does not matter in multi-sets. The multi-set is
+    defined as a set of equivalence classes of sequences, where two sequences
+    are in the same class if they can be mapped to each other by a permutation.
+    The generating function for a multi-set formed from elements of a
+    combinatorial class `\mathcal{A}` is
+
+    .. math ::
+        \exp\left(\sum_{k=1}^{\infty}{\frac{A(z^k)}{k}}\right).
+
+    An equivalent construction of the generating function is
+
+    .. math ::
+        \prod_{N\geq 1}{(1-z^N)^{-A_N}}
+
+    where `A_N` are the coefficients of `A(z)`.
+
+     .. TODO: example
+    '''
     def __new__(cls, other):
         c = CombinatorialClass.__new__(cls)
         c.a = other
@@ -244,6 +305,29 @@ class MSET(CombinatorialClass):
         return 'MSET(' + str(self.a) + ')'
 
 class PSET(CombinatorialClass):
+    r'''
+    A *power set* (or simply a *set*) is a combinatorial class formed from sets
+    of elements of another class. Like the multi-set, order does not matter
+    here, but unlike the multi-set, no multiplicity is allowed in a power set.
+    The generating function of `\operatorname{PSET}(\mathcal{A})` is
+
+    .. math ::
+        \exp\left(\sum_{k=1}^{\infty}{\frac{(-1)^{k-1} A(z^k)}{k}}\right)
+
+    The generating function transformation is similar to that of a multi-set,
+    but the sign of the terms in the series alternates. Growth is slower,
+    which reflects the fact that `\operatorname{PSET}(\mathcal{A}) \subset \operatorname{MSET}(\mathcal{A})`
+    so there are fewer power sets of a given size than there are multi-sets.
+
+    An equivalent construction of the generating function is
+
+    .. math ::
+        \prod_{N\geq 1}{(1+z^N)^{A_N}}
+
+    where `A_N` are the coefficients of `A(z)`.
+
+     .. TODO: example
+    '''
     def __new__(cls, other):
         c = CombinatorialClass.__new__(cls)
         c.a = other
@@ -255,6 +339,19 @@ class PSET(CombinatorialClass):
         return 'PSET(' + str(self.a) + ')'
 
 class CYC(CombinatorialClass):
+    r'''
+    Cycles are constructed from sequences in a similar fashion to multi-sets.
+    Whereas multi-sets were equivalent if they were equal under any permutation,
+    cycles are equivalent only under cyclic permutations. The transformation of
+    generating functions is
+    
+    .. math ::
+        \sum_{k = 1}^{\infty}{\frac{\phi(k)}{k} \log\frac{1}{1-A(z^k)}}
+
+    where `\phi(k)` is Euler's totient function.
+
+     .. TODO: link to totient; need examples
+    '''
     def __new__(cls, other):
         c = CombinatorialClass.__new__(cls)
         c.a = other
