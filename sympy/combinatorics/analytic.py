@@ -198,7 +198,7 @@ class CombinatorialProduct(CombinatorialClass):
     .. math ::
         C_N = \sum_{k=0}^{N}{ A_k C_{N-k} }
 
-     .. TODO: example
+    .. TODO: example
     '''
     def __new__(cls, a, b):
         ## TODO: accept any SymPy Integer
