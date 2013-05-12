@@ -1,7 +1,7 @@
 from sympy.combinatorics.analytic import (Multiton,
             CombinatorialClass,
             CombinatorialAtom, CombinatorialSum, SEQ,
-            CombinatorialProduct, CYC,
+            CombinatorialProduct, CYC, MSET,
             NeutralClass,
             )
 from sympy.abc import z
@@ -63,6 +63,15 @@ def test_Cyc():
     Z = CombinatorialAtom(0)
     cyc = CYC(Z)
 
+def test_restricted_Seq():
+    Z = CombinatorialAtom(0)
+    seq = SEQ(Z, 2)
+    assert seq.gf == z**2
+    seq = SEQ(Z, 3)
+    assert seq.gf == z**3
+    seq = SEQ(Z, 3000)
+    assert seq.gf == z**3000
+
 ## examples from the documentation's "preview" of the symbolic method
 
 def test_integers():
@@ -112,6 +121,17 @@ def test_Catalan():
     T = CombinatorialClass('T')
     ## a binary Tree is either empty or it is a node and two attached trees
     T = NeutralClass() + Z * T * T
-    ser = T.gf.series(n=25)
-    for k in range(25):
+    ser = T.gf.series(n=32)
+    for k in range(32):
         assert ser.coeff(z, k) == catalan(k)
+
+def test_dollar_change():
+    '''
+    This problem was orignally posed by P\'olya, according to Sedgewick &
+    Flajolet. One wishes to determine the number of ways to make change for $1
+    using coins of size $0.01, $0.05, $0.10, $0.25. Here, the order is not
+    important, so we use a set construction.
+    '''
+    Z = CombinatorialAtom()
+    P = MSET(SEQ(Z), 1)*MSET(SEQ(Z), 5) * MSET(SEQ(Z), 10) * MSET(SEQ(Z), 25)
+    assert P.gf.series(z, 0, 101).coeff(z, 100) == 242

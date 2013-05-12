@@ -65,6 +65,10 @@ class CombinatorialClass(Basic):
             if len(functions) > 1:
                 # FIXME: this eliminates use of SymPy functions in generating
                 # function equations, too
+                print
+                print functions
+                print self._gf
+                print
                 raise NotImplementedError("Systems of %d generating functions are not supported" % len(functions))
             # print 'F', self.name, functions
             if not isinstance(self._gf, Function):
@@ -264,7 +268,11 @@ class SEQ(CombinatorialClass):
     def __new__(cls, other, k=None):
         c = CombinatorialClass.__new__(cls)
         c.a = other
-        c._gf = 1/(1-c.a._gf)
+        c.k = k
+        if not c.k:
+            c._gf = 1/(1-c.a.gf)
+        else:
+            c._gf = c.a.gf ** c.k
         return c
 
     def __str__(self):
@@ -294,11 +302,17 @@ class MSET(CombinatorialClass):
 
      .. TODO: example
     '''
-    def __new__(cls, other):
+    def __new__(cls, other, k=None):
         c = CombinatorialClass.__new__(cls)
         c.a = other
-        k = Dummy('k', integer=True)
-        c._gf = exp(Sum(c.a._gf.subs(z, z**k)/k, (k, 1, oo)))
+        c.k = k
+        if not c.k:
+            m = Dummy('m', integer=True)
+            c._gf = exp(Sum(c.a._gf.subs(z, z**m)/m, (m, 1, oo)))
+        else:
+            c._gf = exp(c.a._gf.subs(z, z**k)/k)
+            # raise NotImplementedError('is this right?')
+
         return c
 
     def __str__(self):
@@ -348,9 +362,9 @@ class CYC(CombinatorialClass):
     .. math ::
         \sum_{k = 1}^{\infty}{\frac{\phi(k)}{k} \log\frac{1}{1-A(z^k)}}
 
-    where `\phi(k)` is Euler's totient function.
+    where `\phi(k)` is Euler's :class:`totient function <sympy.ntheory.factor_.totient>`.
 
-     .. TODO: link to totient; need examples
+     .. TODO: examples
     '''
     def __new__(cls, other):
         c = CombinatorialClass.__new__(cls)
