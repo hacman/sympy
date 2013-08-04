@@ -964,7 +964,7 @@ def _AOP_product(n):
     True
 
     The generating poly used here is the same as that listed in
-    http://tinyurl.com/cep849r, but in a refactored form.
+    http://math.stackexchange.com/questions/4643#4654 but in a refactored form.
 
 
     """
@@ -1049,7 +1049,7 @@ def nC(n, k=None, replacement=False):
     ==========
 
     .. [1] http://en.wikipedia.org/wiki/Combination
-    .. [2] http://tinyurl.com/cep849r
+    .. [2] http://math.stackexchange.com/questions/4643#4654
 
     See Also
     ========
