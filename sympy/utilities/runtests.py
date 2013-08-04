@@ -1694,9 +1694,7 @@ class PyTestReporter(Reporter):
         def findout_terminal_width():
             if sys.platform == "win32":
                 # Windows support is based on:
-                #
-                #  http://code.activestate.com/recipes/
-                #  440694-determine-size-of-console-window-on-windows/
+                #  http://code.activestate.com/recipes/440694-determine-size-of-console-window-on-windows/
 
                 from ctypes import windll, create_string_buffer
 

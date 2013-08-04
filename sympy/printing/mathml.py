@@ -390,8 +390,7 @@ class MathMLPrinter(Printer):
     def apply_patch(self):
         # Applying the patch of xml.dom.minidom bug
         # Date: 2011-11-18
-        # Description: http://ronrothman.com/public/leftbraned/xml-dom-minidom-\
-        #                   toprettyxml-and-silly-whitespace/#best-solution
+        # Description: http://ronrothman.com/public/leftbraned/xml-dom-minidom-toprettyxml-and-silly-whitespace/#best-solution
         # Issue: http://bugs.python.org/issue4147
         # Patch: http://hg.python.org/cpython/rev/7262f8f276ff/
 

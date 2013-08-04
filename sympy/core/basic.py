@@ -1313,8 +1313,7 @@ class Basic(with_metaclass(ManagedProperties)):
             # XXX remove the exact flag and make multi-symbol
             # patterns use exact=True semantics; to do this the query must
             # be tested to find out how many Wild symbols are present.
-            # See https://groups.google.com/forum/
-            # ?fromgroups=#!topic/sympy/zPzo5FtRiqI
+            # See https://groups.google.com/forum/?fromgroups=#!topic/sympy/zPzo5FtRiqI
             # for a method of inspecting a function to know how many
             # parameters it has.
             if isinstance(value, Basic):
