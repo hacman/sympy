@@ -627,7 +627,7 @@ class SparseMatrix(MatrixBase):
         Symbolic Sparse Cholesky Factorization using Elimination Trees,
         Jeroen Van Grondelle (1999)
         http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582,
-        downloaded from http://tinyurl.com/9o2jsxj
+        downloaded from http://tinyurl.com/9o2jsxj [PDF]
         """
         # Algorithm 2.4, p 17 of reference
 
@@ -672,7 +672,7 @@ class SparseMatrix(MatrixBase):
         Symbolic Sparse Cholesky Factorization using Elimination Trees,
         Jeroen Van Grondelle (1999)
         http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.39.7582,
-        downloaded from http://tinyurl.com/9o2jsxj
+        downloaded from http://tinyurl.com/9o2jsxj [PDF]
         """
 
         R, parent = self.liupc()
