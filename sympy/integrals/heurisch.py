@@ -341,7 +341,7 @@ def heurisch(f, x, rewrite=False, hints=None, mappings=None, retries=3,
     # TODO: caching is significant factor for why permutations work at all. Change this.
     V = _symbols('x', len(terms))
 
-    mapping = dict(list(zip(terms, V)))
+    mapping = dict(zip(terms, V))
 
     rev_mapping = {}
 
@@ -560,7 +560,7 @@ def heurisch(f, x, rewrite=False, hints=None, mappings=None, retries=3,
             return None
         else:
             solution = [ (k.as_expr(), v.as_expr()) for k, v in solution.items() ]
-            return candidate.subs(solution).subs(list(zip(coeffs, [S.Zero]*len(coeffs))))
+            return candidate.subs(solution).subs(zip(coeffs, [S.Zero]*len(coeffs)))
 
     if not (F.free_symbols - set(V)):
         solution = _integrate('Q')

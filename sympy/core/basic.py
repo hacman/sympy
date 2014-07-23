@@ -516,8 +516,8 @@ class Basic(with_metaclass(ManagedProperties)):
             u += "_"
         name = '%%i%s' % u
         V = self.variables
-        return dict(list(zip(V, [C.Symbol(name % i, **v.assumptions0)
-            for i, v in enumerate(V)])))
+        return dict(zip(V, [C.Symbol(name % i, **v.assumptions0)
+            for i, v in enumerate(V)]))
 
 
     def rcall(self, *args):

@@ -331,8 +331,8 @@ class Expr(Basic, EvalfMixin):
         if free:
             from sympy.utilities.randtest import random_complex_number
             a, c, b, d = re_min, re_max, im_min, im_max
-            reps = dict(list(zip(free, [random_complex_number(a, b, c, d, rational=True)
-                           for zi in free])))
+            reps = dict(zip(free, [random_complex_number(a, b, c, d, rational=True)
+                           for zi in free]))
             try:
                 nmag = abs(self.evalf(2, subs=reps))
             except TypeError:
@@ -478,7 +478,7 @@ class Expr(Basic, EvalfMixin):
         if wrt == free:
             # try 0 (for a) and 1 (for b)
             try:
-                a = self.subs(list(zip(free, [0]*len(free))),
+                a = self.subs(zip(free, [0]*len(free)),
                     simultaneous=True)
                 if a is S.NaN:
                     # evaluation may succeed when substitution fails
@@ -487,7 +487,7 @@ class Expr(Basic, EvalfMixin):
                 a = None
             if a is not None and a is not S.NaN:
                 try:
-                    b = self.subs(list(zip(free, [1]*len(free))),
+                    b = self.subs(zip(free, [1]*len(free)),
                         simultaneous=True)
                     if b is S.NaN:
                         # evaluation may succeed when substitution fails
