@@ -2266,7 +2266,7 @@ class PolyElement(DomainElement, DefaultPrinting, CantSympify, dict):
     def compose(f, x, a=None):
         ring = f.ring
         poly = ring.zero
-        gens_map = dict(zip(ring.gens, list(range(ring.ngens))))
+        gens_map = dict(zip(ring.gens, range(ring.ngens)))
 
         if a is not None:
             replacements = [(x, a)]
@@ -2274,7 +2274,7 @@ class PolyElement(DomainElement, DefaultPrinting, CantSympify, dict):
             if isinstance(x, list):
                 replacements = list(x)
             elif isinstance(x, dict):
-                replacements = sorted(list(x.items()), key=lambda k: gens_map[k[0]])
+                replacements = sorted(x.items(), key=lambda k: gens_map[k[0]])
             else:
                 raise ValueError("expected a generator, value pair a sequence of such pairs")
 

@@ -1445,7 +1445,7 @@ class Permutation(Basic):
         >>> Permutation.from_sequence('SymPy', key=lambda x: x.lower())
         Permutation(4)(0, 2)(1, 3)
         """
-        ic = list(zip(i, list(range(len(i)))))
+        ic = list(zip(i, range(len(i))))
         if key:
             ic.sort(key=lambda x: key(x[0]))
         else:
@@ -2651,7 +2651,7 @@ class Permutation(Basic):
         """
         from collections import deque
         m -= 1
-        Q = deque(list(range(n)))
+        Q = deque(range(n))
         perm = []
         while len(Q) > max(s, 1):
             for dp in range(m):

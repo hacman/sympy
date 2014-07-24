@@ -781,7 +781,7 @@ class MutableDenseMatrix(DenseMatrix, MatrixBase):
         """
         i0 = i*self.cols
         ri = self._mat[i0: i0 + self.cols]
-        self._mat[i0: i0 + self.cols] = [ f(x, j) for x, j in zip(ri, list(range(self.cols))) ]
+        self._mat[i0: i0 + self.cols] = [ f(x, j) for x, j in zip(ri, range(self.cols)) ]
 
     def col_op(self, j, f):
         """In-place operation on col j using two-arg functor whose args are
@@ -804,7 +804,7 @@ class MutableDenseMatrix(DenseMatrix, MatrixBase):
         row_op
         """
         self._mat[j::self.cols] = list(map(lambda t: f(*t),
-            list(zip(self._mat[j::self.cols], list(range(self.rows))))))
+            zip(self._mat[j::self.cols], range(self.rows))))
 
     def row_swap(self, i, j):
         """Swap the two given rows of the matrix in-place.
