@@ -851,8 +851,8 @@ def test_eigen():
     m = Matrix([[1, .6, .6], [.6, .9, .9], [.9, .6, .6]])
     evals = {-sqrt(385)/20 + S(5)/4: 1, sqrt(385)/20 + S(5)/4: 1, S.Zero: 1}
     assert m.eigenvals() == evals
-    nevals = list(sorted(m.eigenvals(rational=False).keys()))
-    sevals = list(sorted(evals.keys()))
+    nevals = sorted(m.eigenvals(rational=False))
+    sevals = sorted(evals)
     assert all(abs(nevals[i] - sevals[i]) < 1e-9 for i in range(len(nevals)))
 
 

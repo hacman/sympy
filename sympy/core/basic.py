@@ -874,7 +874,7 @@ class Basic(with_metaclass(ManagedProperties)):
                         ops = (0, 0)
                     d.setdefault(ops, []).append((o, n))
                 newseq = []
-                for k in sorted(d.keys(), reverse=True):
+                for k in sorted(d, reverse=True):
                     newseq.extend(
                         sorted([v[0] for v in d[k]], key=default_sort_key))
                 sequence = [(k, sequence[k]) for k in newseq]

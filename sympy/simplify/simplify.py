@@ -3342,7 +3342,7 @@ def combsimp(expr):
             # look for runs in Rationals for each resid
             keys = sorted(rats, key=default_sort_key)
             for resid in keys:
-                coeffs = list(sorted(rats[resid]))
+                coeffs = sorted(rats[resid])
                 new = []
                 while True:
                     run = _run(coeffs)
@@ -4960,6 +4960,9 @@ def __trigsimp(expr, deep=False):
             raise TypeError
         fnew = factor(new)
         if fnew != new:
+            ## XXX: looks like what we want is the min of a sequence. sorting
+            ##      it and taking the first element is not the most efficient
+            ##      way of accomplishing that
             new = sorted([new, factor(new)], key=count_ops)[0]
         # if all exp that were introduced disappeared then accept it
         if not (new.atoms(exp) - e):

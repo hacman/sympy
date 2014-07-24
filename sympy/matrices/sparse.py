@@ -221,7 +221,7 @@ class SparseMatrix(MatrixBase):
         row_op
         col_list
         """
-        return [tuple(k + (self[k],)) for k in sorted(list(self._smat.keys()), key=lambda k: list(k))]
+        return [tuple(k + (self[k],)) for k in sorted(self._smat, key=lambda k: list(k))]
 
     RL = property(row_list, None, None, "Alternate faster representation")
 
@@ -245,7 +245,7 @@ class SparseMatrix(MatrixBase):
         col_op
         row_list
         """
-        return [tuple(k + (self[k],)) for k in sorted(list(self._smat.keys()), key=lambda k: list(reversed(k)))]
+        return [tuple(k + (self[k],)) for k in sorted(self._smat, key=lambda k: list(reversed(k)))]
 
     CL = property(col_list, None, None, "Alternate faster representation")
 
@@ -709,7 +709,7 @@ class SparseMatrix(MatrixBase):
                 while j != inf and j != k:
                     Lrow[k].append(j)
                     j = parent[j]
-            Lrow[k] = list(sorted(set(Lrow[k])))
+            Lrow[k] = sorted(set(Lrow[k]))
         return Lrow
 
     def _cholesky_sparse(self):

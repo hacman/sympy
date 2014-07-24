@@ -1086,7 +1086,7 @@ def solve(f, *symbols, **flags):
     assert as_set
     if not solution:
         return [], set()
-    k = sorted(list(solution[0].keys()), key=lambda i: i.sort_key())
+    k = sorted(solution[0], key=lambda i: i.sort_key())
     return k, set([tuple([s[ki] for ki in k]) for s in solution])
 
 

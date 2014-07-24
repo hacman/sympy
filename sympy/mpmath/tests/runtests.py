@@ -116,7 +116,7 @@ def testit(importdir='', testdir=''):
         tstart = clock()
         for priority, name, module in modules:
             print(name)
-            for f in sorted(module.__dict__.keys()):
+            for f in sorted(module.__dict__):
                 if f.startswith('test_'):
                     if coverage and ('numpy' in f):
                         continue

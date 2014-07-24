@@ -1202,7 +1202,7 @@ def primefactors(n, limit=None, verbose=False):
     divisors
     """
     n = int(n)
-    factors = sorted(factorint(n, limit=limit, verbose=verbose).keys())
+    factors = sorted(factorint(n, limit=limit, verbose=verbose))
     s = [f for f in factors[:-1:] if f not in [-1, 0, 1]]
     if factors and isprime(factors[-1]):
         s += [factors[-1]]
@@ -1213,7 +1213,7 @@ def _divisors(n):
     """Helper function for divisors which generates the divisors."""
 
     factordict = factorint(n)
-    ps = sorted(factordict.keys())
+    ps = sorted(factordict)
 
     def rec_gen(n=0):
         if n == len(ps):

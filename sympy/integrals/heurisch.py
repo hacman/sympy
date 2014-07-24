@@ -357,7 +357,7 @@ def heurisch(f, x, rewrite=False, hints=None, mappings=None, retries=3,
         #optimizing the number of permutations of mappping
         unnecessary_permutations = [(x, mapping[x])]
         del mapping[x]
-        mapping = sorted(list(mapping.items()), key=_sort_key, reverse=True)
+        mapping = sorted(mapping.items(), key=_sort_key, reverse=True)
         mappings = permutations(mapping)
 
     def _substitute(expr):

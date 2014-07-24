@@ -1327,7 +1327,7 @@ class LatexPrinter(Printer):
             r", \quad ".join([ self._print(i) for i in expr ])
 
     def _print_dict(self, d):
-        keys = sorted(d.keys(), key=default_sort_key)
+        keys = sorted(d, key=default_sort_key)
         items = []
 
         for key in keys:

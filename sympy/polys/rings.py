@@ -1779,7 +1779,7 @@ class PolyElement(DomainElement, DefaultPrinting, CantSympify, dict):
         [((1, 7), 1), ((2, 3), 2)]
 
         """
-        return self._sorted(list(self.items()), order)
+        return self._sorted(self.items(), order)
 
     def itercoeffs(self):
         """Iterator over coefficients of a polynomial. """

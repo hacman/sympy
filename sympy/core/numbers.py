@@ -1494,7 +1494,7 @@ _intcache = {}
 
 # TODO move this tracing facility to sympy/core/trace.py  ?
 def _intcache_printinfo():
-    ints = sorted(_intcache.keys())
+    ints = sorted(_intcache)
     nhit = _intcache_hits
     nmiss = _intcache_misses
 

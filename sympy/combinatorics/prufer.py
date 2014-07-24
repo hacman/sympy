@@ -282,7 +282,7 @@ class Prufer(Basic):
             if len(missing) == 1:
                 msg = 'Node %s is missing.' % missing.pop()
             else:
-                msg = 'Nodes %s are missing.' % list(sorted(missing))
+                msg = 'Nodes %s are missing.' % sorted(missing)
             raise ValueError(msg)
         if nmin != 0:
             for i, ei in enumerate(rv):
@@ -377,7 +377,7 @@ class Prufer(Basic):
                     if len(missing) == 1:
                         msg = 'Node %s is missing.' % missing.pop()
                     else:
-                        msg = 'Nodes %s are missing.' % list(sorted(missing))
+                        msg = 'Nodes %s are missing.' % sorted(missing)
                     raise ValueError(msg)
             ret_obj._tree_repr = [list(i) for i in args[0]]
             ret_obj._nodes = nnodes
