@@ -2207,7 +2207,7 @@ def _sort_anticommuting_fermions(string1, key=_sqkey):
     rev = list(range(len(string1) - 3, -1, -1))
 
     keys = list(map(key, string1))
-    key_val = dict(list(zip(keys, string1)))
+    key_val = dict(zip(keys, string1))
 
     while not verified:
         verified = True
@@ -2609,7 +2609,7 @@ def _get_ordered_dummies(mul, verbose=False):
                     for fac in masked_facs ]
         all_masked = [ fac.replace(dum_repr[d], mask[d])
                        for fac in masked_facs ]
-        masked_facs = dict(list(zip(dumstruct, masked_facs)))
+        masked_facs = dict(zip(dumstruct, masked_facs))
 
         # dummies for which the ordering cannot be determined
         if has_dups(all_masked):
@@ -2617,7 +2617,7 @@ def _get_ordered_dummies(mul, verbose=False):
             return mask[d], tuple(all_masked)  # positions are ambiguous
 
         # sort factors according to fully masked strings
-        keydict = dict(list(zip(dumstruct, all_masked)))
+        keydict = dict(zip(dumstruct, all_masked))
         dumstruct.sort(key=lambda x: keydict[x])
         all_masked.sort()
 
@@ -2648,7 +2648,7 @@ def _get_ordered_dummies(mul, verbose=False):
                         break
                     pos_val.append(facpos)
         return (mask[d], tuple(all_masked), pos_val[0], pos_val[-1])
-    dumkey = dict(list(zip(all_dums, list(map(_key, all_dums)))))
+    dumkey = dict(zip(all_dums, list(map(_key, all_dums))))
     result = sorted(all_dums, key=lambda x: dumkey[x])
     if has_dups(iter(dumkey.values())):
         # We have ambiguities
